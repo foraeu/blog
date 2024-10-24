@@ -11,31 +11,37 @@
 # ordered by weight from lowest to highest.
 
 [[main]]
-  name = "Home"
+  name = "主页"
   pageRef = "/"
   weight = 1
   pre = "home"
 
 [[main]]
-  name = "Blog"
+  name = "日志"
   pageRef = "posts"
   weight = 10
   pre = "edit"
 
 [[main]]
-  name = "About"
+  name = "说说"
+  pageRef = "shuoshuo"
+  weight = 12
+  pre = "wand-magic-sparkles"
+
+[[main]]
+  name = "关于"
   pageRef = "about"
-  weight = 11
+  weight = 15
   pre = "eye"
 
 [[main]]
-  name = "Links"
+  name = "链接"
   weight = 20
   pre ="link"
 
 [[main]]
   name = "github"
-  parent = "Links"
+  parent = "链接"
   pre = "github"
   weight = 20
 
@@ -88,7 +94,7 @@
 
 
 [[footer]]
-    name = "Tags"
+    name = "标签"
     pageRef = "tags"
     weight = 10
     pre = "tag"
