@@ -11,4 +11,4 @@ isShuoshuo: true
 layoutBackgroundBlur: false
 date: 2024-10-24
 ---
-{{% include "/shuoshuo-single/first.md" %}}
+{{% include "/shuoshuo-single/1.md" %}}

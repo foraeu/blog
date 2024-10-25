@@ -2,7 +2,8 @@
 title: "Hello World"
 description: "第一篇博客记录"
 showBreadcrumbs: true
-date: 2024-10-25
+date: 2024-10-26
+draft: false
 tags: ["第一篇"]
 ---
 
