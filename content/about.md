@@ -1,7 +1,14 @@
 ---
-title: "About"
-date: 2024-10-24T15:47:09+08:00
-description: ""
+title: 关于
+description:
+showAuthor: false
+showDate: false
+showViews: false
+showZenMode: false
+showReadingTime: false
+showWordCount: false
+showPagination: false
+layoutBackgroundHeaderSpace: false
 ---
 # 关于我
 
