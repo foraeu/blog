@@ -1,0 +1,153 @@
+---
+title: "主页"
+date: 2022-06-13T20:55:37+08:00
+---
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>音乐播放器</title>
+    <style>
+        body {
+            font-family: 'Comic Sans MS', cursive, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+        }
+        .card {
+            background: linear-gradient(145deg, #d1d8e0, #c5c8d7);
+            border-radius: 12px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.15);
+            padding: 10px;
+            width: 250px; /* 缩小卡片宽度 */
+            text-align: center;
+            position: fixed;
+            bottom: 20%; /* 固定在左下角 */
+            left: 50%;
+            transform: translateX(-50%); /* 水平居中 */
+            border: 1px solid #a6b0be;
+            z-index: 1000; /* 确保在页面最上层 */
+        }
+        .song-info {
+            margin-bottom: 5px;
+            font-size: 0.8em; /* 缩小字体 */
+            color: #4a4a4a;
+        }
+        .expand-button {
+            cursor: pointer;
+            color: #546e7a;
+            text-decoration: underline;
+            font-size: 1em; /* 缩小字体 */
+        }
+        .song-list {
+            display: none;
+            position: absolute;
+            top: -10px; /* 调整位置 */
+            right: -200px; /* 显示在右侧 */
+            border: 1px solid #a6b0be;
+            background: #f5f7fa;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+            padding: 5px;
+            z-index: 1;
+            width: 160px;
+        }
+        .song-list a {
+            display: block;
+            margin: 3px 0;
+            color: #4a4a4a;
+            text-decoration: none;
+            font-size: 0.8em; /* 缩小字体 */
+        }
+        .song-list a:hover {
+            color: #78829b;
+        }
+        audio {
+            display: none;
+        }
+        .menu-icon {
+            position: absolute;
+            top: 8px;
+            right: 8px;
+            cursor: pointer;
+            color: #546e7a;
+            font-size: 1em;
+        }
+        #pause-button {
+            background-color: #78829b;
+            border: none;
+            border-radius: 8px;
+            color: #ffffff;
+            padding: 5px 10px;
+            cursor: pointer;
+            font-size: 0.8em;
+            margin-top: 5px;
+        }
+        #pause-button:hover {
+            background-color: #667a92;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <div class="song-info">
+        <div id="artist-name">歌手名</div>
+        <div id="song-name">歌曲名</div>
+    </div>
+    <audio id="audio-player" controls>
+        <source id="audio-source" src="" type="audio/mpeg">
+        您的浏览器不支持音频元素。
+    </audio>
+    <button id="pause-button">play</button>
+    <div class="menu-icon" onclick="toggleSongList()">⋮</div>
+    <div class="song-list" id="song-list">
+        <a href="#" onclick="playSong('https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1729958770704/take_me_home_country_roads.mp3', 'John Denver', 'Take Me Home Country Roads')">Take Me Home Country Roads</a>
+        <a href="#" onclick="playSong('https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1729958770704/take_me_home_country_roads.mp3', '歌手2', '歌曲名2')">song2</a>
+        <a href="#" onclick="playSong('https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1729958770704/take_me_home_country_roads.mp3', '歌手3', '歌曲名3')">song3</a>
+    </div>
+</div>
+
+<script>
+    const audioPlayer = document.getElementById('audio-player');
+    const audioSource = document.getElementById('audio-source');
+
+    function toggleSongList() {
+        const songList = document.getElementById('song-list');
+        songList.style.display = songList.style.display === 'block' ? 'none' : 'block';
+    }
+
+    function playSong(url, artist, song) {
+        audioSource.src = url;
+        audioPlayer.load();
+        audioPlayer.play();
+        document.getElementById('artist-name').innerText = artist;
+        document.getElementById('song-name').innerText = song;
+        document.getElementById('pause-button').innerText = 'pause';
+    }
+
+    document.getElementById('pause-button').onclick = function() {
+        if (audioPlayer.paused) {
+            audioPlayer.play();
+            this.innerText = 'pause';
+        } else {
+            audioPlayer.pause();
+            this.innerText = 'play';
+        }
+    };
+
+    // 预加载第一首歌曲并显示其信息
+    function preloadFirstSong() {
+        const firstSongUrl = 'https://fs-im-kefu.7moor-fs1.com/ly/4d2c3f00-7d4c-11e5-af15-41bf63ae4ea0/1729958770704/take_me_home_country_roads.mp3';
+        audioSource.src = firstSongUrl;
+        audioPlayer.load();
+        document.getElementById('artist-name').innerText = 'John Denver';
+        document.getElementById('song-name').innerText = 'Take Me Home Country Roads';
+    }
+
+    window.onload = preloadFirstSong;
+</script>
+
+</body>
+</html>
+
+
