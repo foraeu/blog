@@ -2,11 +2,21 @@
 <rss version="2.0" xmlns:atom="http://www.w3.org/2005/Atom">
   <channel>
     <title>Authors on Foraeu Blog</title>
-    <link>http://localhost:1313/authors/</link>
+    <link>https://foraeu.github.io/authors/</link>
     <description>Recent content in Authors on Foraeu Blog</description>
     <generator>Hugo -- gohugo.io</generator>
-    <language>en</language>
+    <language>zh-cn</language>
     <copyright>© 2024 Foraeu</copyright>
-    <atom:link href="http://localhost:1313/authors/index.xml" rel="self" type="application/rss+xml" />
+    <lastBuildDate>Fri, 25 Oct 2024 10:11:15 +0800</lastBuildDate><atom:link href="https://foraeu.github.io/authors/index.xml" rel="self" type="application/rss+xml" />
+    <item>
+      <title>Foraeu</title>
+      <link>https://foraeu.github.io/authors/foraeu/</link>
+      <pubDate>Fri, 25 Oct 2024 10:11:15 +0800</pubDate>
+      
+      <guid>https://foraeu.github.io/authors/foraeu/</guid>
+      <description></description>
+      
+    </item>
+    
   </channel>
 </rss>
