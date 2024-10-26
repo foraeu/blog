@@ -1,0 +1,9 @@
+@font-face {
+    font-family: STKAITI;
+    src: url('/fonts/STKAITI.ttf');
+}
+
+html {
+    font-family: STKAITI;
+    font-size: 14pt;
+}
