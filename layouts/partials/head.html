@@ -160,6 +160,7 @@
           fixed: true,
           lrcType: 3,
           order: 'random',
+          preload: 'auto',
       audio: [{
             url: "http://music.163.com/song/media/outer/url?id=27448352.mp3",
             artist: "John Denver",
@@ -240,6 +241,7 @@
                           ap.list.switch(musicIndex);
                       }else{
                           ap.seek(musicTime);
+                          ap.lrc.hide();
                           ap.play();
                           ap.lrc.hide();
                           localStorage.clear();
