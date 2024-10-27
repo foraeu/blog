@@ -1,0 +1,285 @@
+<head>
+  <meta charset="utf-8" />
+  {{ with .Site.Language.Params.htmlCode | default .Site.LanguageCode }}
+  <meta http-equiv="content-language" content="{{ . }}" />
+  {{ end }}
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  {{/* Title */}}
+  {{ if .IsHome -}}
+  <title>{{ .Site.Title | emojify }}</title>
+  <meta name="title" content="{{ .Site.Title | emojify }}" />
+  {{- else -}}
+  <title>{{ .Title | emojify }} &middot; {{ .Site.Title | emojify }}</title>
+  <meta name="title" content="{{ .Title | emojify }} &middot; {{ .Site.Title | emojify }}" />
+  {{- end }}
+  {{/* Metadata */}}
+  {{ with (.Params.Summary | default .Params.Description) | default .Site.Params.description -}}
+  <meta name="description" content="{{ . }}" />
+  {{- end }}
+  {{ with  .Params.Tags | default .Site.Params.keywords -}}
+  <meta name="keywords" content="{{ range . }}{{ . }}, {{ end -}}" />
+  {{- end }}
+  {{ with .Site.Params.robots }}
+  <meta name="robots" content="{{ . }}" />
+  {{ end }}
+  {{ with .Params.robots }}
+  <meta name="robots" content="{{ . }}" />
+  {{ end }}
+  <link rel="canonical" href="{{ .Permalink }}" />
+  {{ range .AlternativeOutputFormats -}}
+  {{ printf `
+  <link rel="%s" type="%s" href="%s" title="%s" />` .Rel .MediaType.Type .RelPermalink ($.Site.Title | emojify) |
+  safeHTML }}
+  {{ end -}}
+  {{/* Asset bundles */}}
+  {{ $assets := newScratch }}
+  {{ $cssScheme := resources.Get (printf "css/schemes/%s.css" (.Site.Params.colorScheme | default "blowfish")) }}
+  {{ if not $cssScheme }}
+  {{ $cssScheme = resources.Get "css/schemes/blowfish.css" }}
+  {{ end }}
+  {{ $assets.Add "css" (slice $cssScheme) }}
+  {{ $cssMain := resources.Get "css/compiled/main.css" }}
+  {{ $assets.Add "css" (slice $cssMain) }}
+  {{ $cssCustom := resources.Get "css/custom.css" }}
+  {{ if $cssCustom }}
+  {{ $assets.Add "css" (slice $cssCustom) }}
+  {{ end }}
+  {{ $bundleCSS := $assets.Get "css" | resources.Concat "css/main.bundle.css" | resources.Minify | resources.Fingerprint
+  "sha512" }}
+  <link type="text/css" rel="stylesheet" href="{{ $bundleCSS.RelPermalink }}"
+    integrity="{{ $bundleCSS.Data.Integrity }}" />
+  {{ $jsAppearance := resources.Get "js/appearance.js" }}
+  {{ $jsAppearance = $jsAppearance | resources.ExecuteAsTemplate "js/appearance.js" . | resources.Minify | resources.Fingerprint "sha512" }}
+  <script type="text/javascript" src="{{ $jsAppearance.RelPermalink }}"
+    integrity="{{ $jsAppearance.Data.Integrity }}"></script>
+  {{ if .Site.Params.enableSearch | default false }}
+  {{ $jsFuse := resources.Get "lib/fuse/fuse.min.js" }}
+  {{ $jsSearch := resources.Get "js/search.js" }}
+  {{ $assets.Add "js" (slice $jsFuse $jsSearch) }}
+  {{ end }}
+  {{ if .Site.Params.enableCodeCopy | default false }}
+  {{ $jsCode := resources.Get "js/code.js" }}
+  {{ $assets.Add "js" (slice $jsCode) }}
+  {{ end }}
+  {{ if .Site.Params.rtl | default false }}
+  {{ $jsRTL := resources.Get "js/rtl.js" }}
+  {{ $assets.Add "js" (slice $jsRTL) }}
+  {{ end }}
+  {{ $jsMobileMenu := resources.Get "js/mobilemenu.js" }}
+  {{ $assets.Add "js" (slice $jsMobileMenu) }}
+  {{ if $assets.Get "js" }}
+  {{ $bundleJS := $assets.Get "js" | resources.Concat "js/main.bundle.js" | resources.Minify | resources.Fingerprint
+  "sha512" }}
+  <script defer type="text/javascript" id="script-bundle" src="{{ $bundleJS.RelPermalink }}"
+    integrity="{{ $bundleJS.Data.Integrity }}" data-copy="{{ i18n " code.copy" }}" data-copied="{{ i18n " code.copied"
+    }}"></script>
+  {{ end }}
+  {{ if not .Site.Params.disableImageZoom | default true }}
+  {{ $zoomJS := resources.Get "lib/zoom/zoom.min.js" | resources.Fingerprint "sha512" }}
+  <script src="{{ $zoomJS.RelPermalink }}" integrity="{{ $zoomJS.Data.Integrity }}"></script>
+  {{ end }}
+  {{/* Icons */}}
+  {{ if templates.Exists "partials/favicons.html" }}
+  {{ partialCached "favicons.html" .Site }}
+  {{ else }}
+  <link rel="apple-touch-icon" sizes="180x180" href="{{ "apple-touch-icon.png" | relURL }}" />
+  <link rel="icon" type="image/png" sizes="32x32" href="{{ "favicon-32x32.png" | relURL }}" />
+  <link rel="icon" type="image/png" sizes="16x16" href="{{ "favicon-16x16.png" | relURL }}" />
+  <link rel="manifest" href="{{ "site.webmanifest" | relURL }}" />
+  {{ end }}
+  {{/* Site Verification */}}
+  {{ with .Site.Params.verification.google }}
+  <meta name="google-site-verification" content="{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.verification.bing }}
+  <meta name="msvalidate.01" content="{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.verification.pinterest }}
+  <meta name="p:domain_verify" content="{{ . }}" />
+  {{ end }}
+  {{ with .Site.Params.verification.yandex }}
+  <meta name="yandex-verification" content="{{ . }}" />
+  {{ end }}
+  {{/* Social */}}
+  {{ template "_internal/opengraph.html" . }}
+  {{ template "_internal/twitter_cards.html" . }}
+  {{/* Schema */}}
+  {{ partial "schema.html" . }}
+  {{/* Me */}}
+  {{ with .Site.Params.Author.name }}
+  <meta name="author" content="{{ . }}" />{{ end }}
+  {{ with .Site.Params.Author.links }}
+  {{ range $links := . }}
+  {{ range $name, $url := $links }}
+  <link href="{{ $url }}" rel="me" />{{ end }}
+  {{ end }}
+  {{ end }}
+  {{/* Vendor */}}
+  {{ partial "vendor.html" . }}
+  {{/* Analytics */}}
+  {{ partial "analytics/main.html" .Site }}
+  {{/* Extend head - eg. for custom analytics scripts, etc. */}}
+  {{ if templates.Exists "partials/extend-head.html" }}
+  {{ partialCached "extend-head.html" .Site }}
+  {{ end }}
+  <meta name="theme-color"/>
+  {{/* Firebase */}}
+  {{ with $.Site.Params.firebase }}
+  {{ if isset $.Site.Params "firebase" }}
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-app.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-firestore.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/8.10.0/firebase-auth.js"></script>
+  <script>
+
+    const firebaseConfig = {
+      apiKey: {{ $.Site.Params.firebase.apiKey }},
+      authDomain: {{ $.Site.Params.firebase.apiKey }},
+      projectId: {{ $.Site.Params.firebase.projectId }},
+      storageBucket: {{ $.Site.Params.firebase.storageBucket }},
+      messagingSenderId: {{ $.Site.Params.firebase.messagingSenderId }},
+      appId: {{ $.Site.Params.firebase.appId }},
+      measurementId: {{ $.Site.Params.firebase.measurementId }}
+    };
+
+    var app = firebase.initializeApp(firebaseConfig);
+    var db = firebase.firestore();
+    var auth = firebase.auth();
+
+  </script>
+  {{ end }}
+  {{ end }}
+
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
+  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <div id="aplayera" style="opacity:0.8;color: var(--tw-prose-headings);"></div>
+  <script type="text/javascript">
+    const staticDir = {{ .Site.Home.Permalink }}
+    const ap = new APlayer({
+      container: document.getElementById('aplayera'),
+          fixed: true,
+          lrcType: 3,
+          order: 'random',
+      audio: [{
+            url: "http://music.163.com/song/media/outer/url?id=27448352.mp3",
+            artist: "John Denver",
+            name: "Take Me Home Country Roads",
+            lrc: staticDir + "Take Me Home Country Roads-John Denver.lrc", // 替换为歌词文件路径
+            cover: staticDir + "music/take me home country roads.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=482633580.mp3",
+            artist: "Aimer",
+            name: "茜さす",
+            lrc: staticDir + "茜さす (TVサイズ)-Aimer.lrc", // 替换为歌词文件路径
+            cover: staticDir + "music/夕晖.jpg",
+        },
+        {
+            url: "https://freetyst.nf.migu.cn/public%2Fproduct10th%2FproductB35%2F2021%2F05%2F0617%2F2021%E5%B9%B405%E6%9C%8806%E6%97%A517%E7%82%B910%E5%88%86%E7%B4%A7%E6%80%A5%E5%86%85%E5%AE%B9%E5%87%86%E5%85%A5%E6%B5%B7%E8%9D%B6%E5%94%B1%E7%89%871%E9%A6%96%2F%E5%85%A8%E6%9B%B2%E8%AF%95%E5%90%AC%2FMp3_64_22_16%2F6005860TDR9172004.mp3?Key=abbdcc72869abd7e&Tim=1730018967213&channelid=01&msisdn=d5620a044a4041858f93c2a643e9e757",
+            artist: "许嵩",
+            name: "乌鸦",
+            lrc: staticDir + "乌鸦.lrc", // 替换为歌词文件路径
+            cover: staticDir + "music/乌鸦.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=29715440.mp3",
+            artist: "中島美嘉",
+            name: "雪の華",
+            lrc: staticDir + "雪の華-中島美嘉.lrc", // 替换为歌词文件路径
+            cover: staticDir + "music/雪之华.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=500665348.mp3",
+            artist: "朴树",
+            name: "Forever Young (Live)",
+            lrc: staticDir + "Forever Young (Live)-朴树.lrc", // 替换为歌词文件路径
+            cover: staticDir + "music/forever young.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=469391955.mp3",
+            artist: "Beyond",
+            name: "真的爱你",
+            lrc: staticDir + "真的爱你-Beyond.lrc", // 替换为歌词文件路径
+            cover: staticDir + "music/真的爱你.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=26508150.mp3",
+            artist: "WANDS",
+            name: "世界が終るまでは",
+            lrc: staticDir + "世界が終るまでは-WANDS.lrc", // 替换为歌词文件路径
+            cover: staticDir + "music/直到世界尽头.jpg",
+        },
+
+        {
+            url: "http://music.163.com/song/media/outer/url?id=1987948211.mp3",
+            artist: "牛尾憲輔",
+            name: "Night Cruising",
+            lrc: staticDir + "Night Cruising-牛尾憲輔.lrc" , // 替换为歌词文件路径
+            cover: staticDir + "music/夜间巡航.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=2081236.mp3",
+            artist: "Westlife",
+            name: "Seasons in the Sun",
+            lrc: staticDir + "Seasons in the Sun-Westlife.lrc.lrc", // 替换为歌词文件路径
+            cover: staticDir + "music/season in the song.jpg",
+        },
+    ]
+  });
+  
+          ready();
+      
+      isRecover = false;
+      function ready(){
+          ap.on('canplay', function () {
+              if(!isRecover){
+                  if(localStorage.getItem("musicIndex") != null){
+                      musicIndex = localStorage.getItem("musicIndex");
+                      musicTime = localStorage.getItem("musicTime");
+                      if(ap.list.index != musicIndex){
+                          ap.list.switch(musicIndex);
+                      }else{
+                          ap.seek(musicTime);
+                          ap.play();
+                          ap.lrc.hide();
+                          localStorage.clear();
+                          ap.setAttribute(muted,'');
+                          ap.setAttribute(playsinline,'');
+                          isRecover = true;
+                      }
+                  }else{
+                      isRecover = true;
+                  }
+              }
+          });
+      }
+  
+      window.onbeforeunload = function(event) {
+          if(!ap.audio.paused){
+              musicIndex = ap.list.index;
+              musicTime = ap.audio.currentTime;
+              localStorage.setItem("musicIndex",musicIndex);
+              localStorage.setItem("musicTime",musicTime);
+          }
+      };
+  
+  
+  
+  var element = document.getElementsByClassName("aplayer-title")[0];  
+  $(element).wrap("<a href='{{i18n "pathAppendix"}}/radio/pick/'></a>");
+  </script>
+  
+  
+  
+  
+  
+  <style type="text/css">
+      .aplayer-title, .aplayer-list-light {
+          color:#000000cc;
+      }
+      .aplayer-list{
+          color:#717070bf;
+      }
+  </style>
+  
+</head>
