@@ -11,7 +11,7 @@ title = "Foraeu Blog"
   dateFormat = "2006年1月2日"
   logo = "img/flat.svg"
   # secondaryLogo = "img/pc1.svg"
-  # description = "My awesome website"
+  # description = "My awesome"
   # copyright = "Copy, _right?_ :thinking_face:"
 
 [params.author]
