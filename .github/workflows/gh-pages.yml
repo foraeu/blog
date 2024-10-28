@@ -31,3 +31,13 @@ jobs:
         publish_dir: ./public
         external_repository: foraeu/foraeu.github.io    # 改为你自己的仓库
         publish_branch: main    # push 的仓库的分支
+    
+    - name: Set up SSH
+      uses: webfactory/ssh-agent@v0.5.3
+      with:
+        ssh-private-key: ${{ secrets.BLOG }}
+
+    - name: Deploy to Nginx Server
+      run: |
+        rsync -avz --delete ./ username@${{ secrets.SERVER_IP }}:/var/www/html/foraeu
+      
