@@ -36,6 +36,10 @@ jobs:
       uses: webfactory/ssh-agent@v0.5.3
       with:
         ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: Test SSH connection
+      run: ssh -o StrictHostKeyChecking=no root@${{ secrets.SERVER_IP }} "echo 'SSH connection successful'"
+
     
     - name: Add server to known_hosts
       run: |
