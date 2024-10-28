@@ -27,7 +27,7 @@ jobs:
     - name: Deploy to GitHub Pages
       uses: peaceiris/actions-gh-pages@v3
       with:
-        personal_token: ${{ secrets.BLOG }}   # PUBLIC 请改为你设置的 Secret 名称
+        personal_token: ${{ secrets.SSH_PRIVATE_KEY }}   # PUBLIC 请改为你设置的 Secret 名称
         publish_dir: ./public
         external_repository: foraeu/foraeu.github.io    # 改为你自己的仓库
         publish_branch: main    # push 的仓库的分支
