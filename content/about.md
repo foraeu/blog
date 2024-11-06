@@ -9,6 +9,8 @@ showReadingTime: false
 showWordCount: false
 showPagination: false
 layoutBackgroundHeaderSpace: false
+showComments: false
+showBreadcrumbs: false
 ---
 # 关于我
 
