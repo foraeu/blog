@@ -1,9 +1,14 @@
 @font-face {
-    font-family: STKAITI;
-    src: url('/fonts/STKAITI.ttf');
+    font-family: msyh;
+    src: url('/fonts/msyh.ttc');
+}
+
+@font-face {
+    font-family: PingFangSC-Regular;
+    src: url('/fonts/PingFangSC-Regular.otf');
 }
 
 html {
-    font-family: STKAITI;
-    font-size: 14pt;
+    font-family: msyh;
+    font-size: 16pt;
 }

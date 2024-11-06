@@ -32,7 +32,7 @@ giteaDefaultServer = "https://git.fsfe.org"
 forgejoDefaultServer = "https://v8.next.forgejo.org"
 
 [header]
-  layout = "fixed" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
+  layout = "basic" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
 
 [footer]
   showMenu = true
@@ -60,11 +60,11 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showDateUpdated = false
   showAuthor = true
   showAuthorBottom = true
-  showHero = true
-  heroStyle = "background" # valid options: basic, big, background, thumbAndBackground
+  showHero = false
+  heroStyle = "basic" # valid options: basic, big, background, thumbAndBackground
   layoutBackgroundBlur = true # only used when heroStyle equals background or thumbAndBackground
   layoutBackgroundHeaderSpace = true # only used when heroStyle equals background
-  showBreadcrumbs = false
+  showBreadcrumbs = true
   showDraftLabel = true
   showEdit = false
   editURL = "https://github.com/foraeu/foraeu.github.io/"

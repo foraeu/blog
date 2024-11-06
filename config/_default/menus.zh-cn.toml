@@ -14,30 +14,30 @@
   name = "主页"
   pageRef = "/"
   weight = 1
-  pre = "home"
+#  pre = "home"
 
 [[main]]
   name = "日志"
   pageRef = "posts"
   weight = 10
-  pre = "edit"
+#  pre = "edit"
 
 [[main]]
   name = "说说"
   pageRef = "shuoshuo"
   weight = 12
-  pre = "wand-magic-sparkles"
+#  pre = "wand-magic-sparkles"
 
 [[main]]
   name = "关于"
   pageRef = "about"
   weight = 15
-  pre = "eye"
+#  pre = "eye"
 
 [[main]]
   name = "链接"
   weight = 20
-  pre ="link"
+#  pre ="link"
 
 #[[main]]
 #  name = "github"
