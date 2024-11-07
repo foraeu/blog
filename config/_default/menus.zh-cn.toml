@@ -39,6 +39,12 @@
   weight = 20
 #  pre ="link"
 
+[[main]]
+  name = "标签"
+  pageRef = "tags"
+  weight = 13
+#  pre = "tag"
+
 #[[main]]
 #  name = "github"
 #  parent = "链接"
@@ -94,11 +100,11 @@
 # the copyright notice. Configure as per the main menu above.
 
 
-[[footer]]
-    name = "标签"
-    pageRef = "tags"
-    weight = 10
-    pre = "tag"
+#[[footer]]
+#    name = "标签"
+#    pageRef = "tags"
+#    weight = 10
+#    pre = "tag"
 
 # [[footer]]
 #   name = "Categories"

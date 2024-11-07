@@ -1,5 +1,5 @@
 ---
-title: 关于
+title: 
 description:
 showAuthor: false
 showDate: false
@@ -12,6 +12,14 @@ layoutBackgroundHeaderSpace: false
 showComments: false
 showBreadcrumbs: false
 ---
-# 关于我
+**关于我**
 
-有时间再写吧
+{{< typeit 
+  tag=h3
+  speed=80
+  breakLines=false
+  loop=true
+>}}
+我们都是地球人，
+爱好和平每一天。
+{{< /typeit >}}

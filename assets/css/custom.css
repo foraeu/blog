@@ -8,7 +8,15 @@
     src: url('/fonts/PingFangSC-Regular.otf');
 }
 
-html {
+:lang(zh-cn) {
+    font-family: Noto Serif SC;
+}
+
+:lang(en) {
+    font-family: Noto Serif,Noto Serif SC;
+}
+
+/* html {
     font-family: msyh;
     font-size: 16pt;
-}
+} */
