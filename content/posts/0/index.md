@@ -29,3 +29,9 @@ tags: ["第一篇"]
 
 > 标签页面：[ZhenShuo2021](https://www.zsl0621.cc/tags/)
 
+> 悬浮播放器，说说：[金圣皓](https://www.karlukle.site/blogs/site-build/)
+
+> 评论系统：[utterances](https://utteranc.es/)
+
+> 主页诗词调用：[今日诗词 API](https://www.jinrishici.com/)
+

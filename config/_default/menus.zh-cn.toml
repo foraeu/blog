@@ -34,9 +34,9 @@
   weight = 15
 #  pre = "eye"
 
-[[main]]
-  name = "链接"
-  weight = 20
+#[[main]]
+#  name = "链接"
+#  weight = 20
 #  pre ="link"
 
 [[main]]

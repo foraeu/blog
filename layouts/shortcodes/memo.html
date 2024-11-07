@@ -8,12 +8,21 @@
    {{ $.Scratch.Set "noTitleLink" (.Get "noTitleLink") }}
 
 <span style="display: inline-block;margin-left: 2.5%;" align="left" id="{{ .Get "title" | urlize }}" >
-<div class="article border border-neutral-200 dark:border-neutral-700 border-1 rounded-md backdrop-blur-2xl shadow-2xl" style='width:{{ .Get "width" }}' >
+<div class="article border border-neutral-200 dark:border-neutral-700 border-1 rounded-md backdrop-blur-2xl shadow-2xl" style='width:{{ .Get "width" }};background-color: white;
+border-radius: 0.25rem;
+display: flex;
+flex-direction: column;
+overflow: hidden;
+padding-left: 30px;
+background: repeating-linear-gradient(#0000 0 calc(1.2rem - 1px), #66afe1 1 1.2rem) right bottom / 100% 100%, linear-gradient(red 0 0) 30px 0 / 2px 100% #fff;
+background-repeat: no-repeat;
+line-height: 1.2rem;
+-webkit-mask: radial-gradient(circle .8rem at 2px 50%, #0000 98%, #000) 0 0 / 100% 2.4rem;'>
   <div class="p-6">
 {{ if eq page.IsHome true }}{{ if not ($.Scratch.Get "noTitleLink") }}<a href="/shuoshuo" class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral" style="text-decoration-color: rgba(var(--color-primary-500),1);">{{ end }}{{ end }}
 <h3  class="font-semibold">{{ .Get "title" }}</h3>
 {{ if eq page.IsHome true }}{{ if not ($.Scratch.Get "noTitleLink") }}</a>{{ end }}{{ end }}
-<div class="dark:text-neutral overflow-auto" style="height: auto;; word-wrap:break-word; word-break:break-all; overflow: hidden;">
+<div class="dark:text-neutral overflow-auto" style="height: auto; word-wrap:break-word; word-break:break-all; overflow: hidden;padding: 1.2rem;">
   {{ .Inner | markdownify }}
 </div>
 <div class="text-sm text-neutral-500 dark:text-neutral-400">

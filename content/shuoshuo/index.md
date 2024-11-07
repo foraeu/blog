@@ -6,13 +6,15 @@ showZenMode: false
 showViews: false
 showReadingTime: false
 showWordCount: false
-cardView: true
+cardView: false
 showPagination: false
 isShuoshuo: true
 layoutBackgroundBlur: false
 showComments: false
 showBreadcrumbs: false
 layoutBackgroundHeaderSpace: false
+showHero: true
+heroStyle: "background"
 ---
 <font size="5">**说说**</font>
 {{% include "/shuoshuo-single/1.md" %}}

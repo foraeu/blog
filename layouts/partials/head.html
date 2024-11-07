@@ -159,7 +159,7 @@
   {{ end }}
 
   <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-  <script src="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.js"></script>
+  <script src="https://music.cenguigui.cn/player/js/APlayer.min.js"></script>
   <div id="aplayera" style="opacity:0.8;color: var(--tw-prose-headings);"></div>
   <script type="text/javascript">
     const staticDir = {{ .Site.Home.Permalink }}
@@ -248,6 +248,7 @@
       isRecover = false;
       function ready(){
           ap.on('canplay', function () {
+            ap.lrc.hide();
               if(!isRecover){
                   if(localStorage.getItem("musicIndex") != null){
                       musicIndex = localStorage.getItem("musicIndex");
@@ -256,9 +257,7 @@
                           ap.list.switch(musicIndex);
                       }else{
                           ap.seek(musicTime);
-                          ap.lrc.hide();
                           ap.play();
-                          ap.lrc.hide();
                           localStorage.clear();
                           ap.setAttribute(muted,'');
                           ap.setAttribute(playsinline,'');
