@@ -16,6 +16,19 @@
     font-family: Noto Serif,Noto Serif SC;
 }
 
+.article-content a {
+    color: rgb(6, 15, 43); /* 使用淡藍色 */
+}
+
+/* 懸停時底線改為粗線並增加距離 */
+.article-content a:hover, .article-content a:focus {
+    color: rgb(0, 0, 139); /* 設定連結懸停和聚焦狀態下的顏色 */
+    text-decoration: underline; /* 添加連結懸停時的底線 */
+    text-decoration-thickness: 2px; /* 設定底線的粗線 */
+    text-decoration-skip-ink: none; /* 避免底線與文字重疊 */
+    text-underline-offset: 4.5px; /* 增加底線與文字的距離*/
+}
+
 /* html {
     font-family: msyh;
     font-size: 16pt;

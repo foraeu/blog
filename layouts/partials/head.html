@@ -158,8 +158,8 @@
   {{ end }}
   {{ end }}
 
-  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/aplayer/dist/APlayer.min.css">
-  <script src="https://music.cenguigui.cn/player/js/APlayer.min.js"></script>
+  <link rel="stylesheet" href="{{ "css/APlayer.min.css" | relURL }}">
+  <script src="{{ "js/APlayer.min.js" | relURL }}"></script>
   <div id="aplayera" style="opacity:0.8;color: var(--tw-prose-headings);"></div>
   <script type="text/javascript">
     const staticDir = {{ .Site.Home.Permalink }}

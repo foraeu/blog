@@ -22,7 +22,7 @@ disableTextInHeader = false
 backgroundImageWidth = 1200
 
 defaultBackgroundImage = "img/bizhihui_com.jpg" # used as default for background images 
-defaultFeaturedImage = "img/pc1.png" # used as default for featured images in all articles
+#defaultFeaturedImage = "img/pc1.png" # used as default for featured images in all articles
 
 # highlightCurrentMenuArea = true
 # smartTOC = true
@@ -97,7 +97,7 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showCards = false
   orderByWeight = false
   groupByYear = true
-  cardView = false
+  cardView = true
   cardViewScreenWidth = false
   constrainItemsWidth = false
 
@@ -111,7 +111,7 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   showBreadcrumbs = false
   showViews = false
   showLikes = false
-  showTableOfContents = true
+  showTableOfContents = false
   cardView = false
   maxFontSize = 36  # 設定最大字體大小
   minFontSize = 14  # 設定最小字體大小
