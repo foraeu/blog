@@ -24,7 +24,7 @@ title = "Foraeu Blog"
   links = [
     {github = "https://github.com/foraeu" },
 #    {netease_cloud_music = "https://music.163.com/#/user/home?id=421202432" },
-    {email = "mailto:2807463354@qq.com" },
+#    {email = "mailto:2807463354@qq.com" },
 #     { gitlab = "https://gitlab.com/username" },
 #     { email = "mailto:hello@your_domain.com" },
 #     { link = "https://link-to-some-website.com/" },

@@ -12,7 +12,7 @@ layoutBackgroundHeaderSpace: false
 showComments: false
 showBreadcrumbs: false
 ---
-**关于我**
+
 
 {{< typeit 
   tag=h3
@@ -23,3 +23,8 @@ showBreadcrumbs: false
 我们都是地球人，
 爱好和平每一天。
 {{< /typeit >}}
+
+{{< figure
+    src="img/pingpang.png"
+    alt="Abstract purple artwork"
+    >}}
