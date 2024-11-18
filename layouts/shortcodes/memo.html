@@ -1,4 +1,4 @@
-   {{ if .IsNamedParams }}
+{{ if .IsNamedParams }}
    {{ $.Scratch.Set "time" (.Get "time") }}
    {{ $.Scratch.Set "1" (.Get "1") }}
    {{ $.Scratch.Set "2" (.Get "2") }}
@@ -8,49 +8,86 @@
    {{ $.Scratch.Set "noTitleLink" (.Get "noTitleLink") }}
 
 <span style="display: inline-block;margin-left: 2.5%;" align="left" id="{{ .Get "title" | urlize }}" >
-<div class="article border border-neutral-200 dark:border-neutral-700 border-1 rounded-md backdrop-blur-2xl shadow-2xl" style='width:{{ .Get "width" }};background-color: white;
-border-radius: 0.25rem;
-display: flex;
-flex-direction: column;
-overflow: hidden;
-padding-left: 30px;
-background: repeating-linear-gradient(#0000 0 calc(1.2rem - 1px), #66afe1 1 1.2rem) right bottom / 100% 100%, linear-gradient(red 0 0) 30px 0 / 2px 100% #fff;
-background-repeat: no-repeat;
-line-height: 1.2rem;
--webkit-mask: radial-gradient(circle .8rem at 2px 50%, #0000 98%, #000) 0 0 / 100% 2.4rem;'>
-  <div class="p-6">
+<div class="article backdrop-blur-lg border-1 rounded-lg" 
+  style='width:{{ .Get "width" }};
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.95), rgba(255, 255, 255, 0.85)),
+    linear-gradient(to right, rgba(209, 250, 229, 0.2), rgba(167, 243, 208, 0.1));
+  border: 1px solid rgba(16, 185, 129, 0.2);
+  border-radius: 0.75rem;
+  display: flex;
+  flex-direction: column;
+  overflow: hidden;
+  padding: 1rem 2rem 1rem 3rem;
+  position: relative;'>
+
+  <!-- 装饰点效果 改为绿色 -->
+  <div class="corner-decorations" style="position: absolute; top: 1rem; right: 1rem; display: flex; gap: 4px;">
+    <div style="width: 4px; height: 4px; background: rgba(16, 185, 129, 0.6); border-radius: 50%;"></div>
+    <div style="width: 4px; height: 4px; background: rgba(16, 185, 129, 0.8); border-radius: 50%;"></div>
+  </div>
+
+  <!-- 扫描线效果 改为绿色 -->
+  <div style="
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 2px;
+    background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.4), transparent);
+    animation: scanline 2s linear infinite;"></div>
+
+  <!-- 左上角指示点 改为绿色 -->
+  <div style="
+    position: absolute;
+    top: 1rem;
+    left: 1rem;
+    width: 6px;
+    height: 6px;
+    background: rgba(16, 185, 129, 0.8);
+    border-radius: 50%;
+    box-shadow: 0 0 8px rgba(16, 185, 129, 0.4);">
+  </div>
+
+  <div class="p-2 relative">
 {{ if eq page.IsHome true }}{{ if not ($.Scratch.Get "noTitleLink") }}<a href="/shuoshuo" class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral" style="text-decoration-color: rgba(var(--color-primary-500),1);">{{ end }}{{ end }}
-<h3  class="font-semibold">{{ .Get "title" }}</h3>
+<h3 class="font-semibold mt-1 mb-2">{{ .Get "title" }}</h3>
 {{ if eq page.IsHome true }}{{ if not ($.Scratch.Get "noTitleLink") }}</a>{{ end }}{{ end }}
-<div class="dark:text-neutral overflow-auto" style="height: auto; word-wrap:break-word; word-break:break-all; overflow: hidden;padding: 1.2rem;">
+<div class="dark:text-neutral overflow-auto" 
+      style="height: auto; 
+      word-wrap: break-word; 
+      word-break: break-all; 
+      overflow: hidden;
+      padding: 0.75rem 0;
+      line-height: 1.75;">
   {{ .Inner | markdownify }}
 </div>
-<div class="text-sm text-neutral-500 dark:text-neutral-400">
-  <div class="flex flex-row flex-wrap items-center">
-<time>{{ .Get "date" }}</time>
+<div class="text-sm text-neutral-500 dark:text-neutral-400 mt-2">
+  <div class="flex flex-row flex-wrap items-center gap-2">
+<time class="font-medium">{{ .Get "date" }}</time>
 
 {{ if ($.Scratch.Get "time") }}
-<span class="px-2 text-primary-500">·</span>
-<span>{{ .Get "time"  | markdownify }}</span>
+<span class="text-primary-500">·</span>
+<span class="text-neutral-600 dark:text-neutral-300">{{ .Get "time"  | markdownify }}</span>
 {{ end }}
 {{ if ($.Scratch.Get "1") }}
-<span class="px-2 text-primary-500">·</span>
+<span class="text-primary-500">·</span>
 <span>{{ .Get "1"  | markdownify }}</span>
 {{ end }}
 {{ if ($.Scratch.Get "2") }}
-<span class="px-2 text-primary-500">·</span>
+<span class="text-primary-500">·</span>
 <span>{{ .Get "2"   | markdownify }}</span>
 {{ end }}
 {{ if ($.Scratch.Get "3") }}
-<span class="px-2 text-primary-500">·</span>
+<span class="text-primary-500">·</span>
 <span>{{ .Get "3"   | markdownify }}</span>
 {{ end }}
 {{ if ($.Scratch.Get "4") }}
-<span class="px-2 text-primary-500">·</span>
+<span class="text-primary-500">·</span>
 <span>{{ .Get "4"   | markdownify }}</span>
 {{ end }}
 {{ if ($.Scratch.Get "5") }}
-<span class="px-2 text-primary-500">·</span>
+<span class="text-primary-500">·</span>
 <span>{{ .Get "5"   | markdownify }}</span>
 {{ end }}
 
@@ -58,10 +95,40 @@ line-height: 1.2rem;
 </div>
 </div>
 </div>
+
+<style>
+@keyframes scanline {
+  0% { transform: translateX(-100%); }
+  100% { transform: translateX(100%); }
+}
+
+@keyframes pulse {
+  0% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0.4); }
+  70% { box-shadow: 0 0 0 6px rgba(59, 130, 246, 0); }
+  100% { box-shadow: 0 0 0 0 rgba(59, 130, 246, 0); }
+}
+
+.article:hover {
+  transform: translateY(-2px);
+  box-shadow: 
+    0 12px 20px rgba(0, 0, 0, 0.1),
+    0 0 0 1px rgba(0, 0, 0, 0.02),
+    inset 0 0 25px rgba(59, 130, 246, 0.15),
+    inset 0 0 60px rgba(219, 234, 254, 0.3);
+  background: 
+    linear-gradient(135deg, rgba(255, 255, 255, 0.97), rgba(255, 255, 255, 0.9)),
+    linear-gradient(to right, rgba(199, 210, 254, 0.15), rgba(224, 242, 254, 0.25)),
+    repeating-linear-gradient(45deg, rgba(59, 130, 246, 0.03) 0px, rgba(59, 130, 246, 0.03) 1px, transparent 1px, transparent 10px),
+    repeating-linear-gradient(-45deg, rgba(96, 165, 250, 0.03) 0px, rgba(96, 165, 250, 0.03) 1px, transparent 1px, transparent 10px);
+}
+
+.article:hover .corner-decorations div {
+  background: rgba(59, 130, 246, 0.8);
+  box-shadow: 0 0 8px rgba(59, 130, 246, 0.4);
+  transition: all 0.3s ease;
+}
+</style>
+
 <br/>
 </span>
 {{ end }}
-
-
-
-

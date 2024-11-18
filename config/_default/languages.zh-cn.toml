@@ -17,7 +17,7 @@ title = "Foraeu Blog"
 [params.author]
   name = "Foraeu"
 #   email = "youremail@example.com"
-  image = "img/author.jpg"
+  image = "img/girl-160326_1920.png"
 #   imageQuality = 96
   headline = "非淡泊无以明志，非宁静无以致远"
 #   bio = "A little bit about you"

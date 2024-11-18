@@ -1,12 +1,20 @@
 <!DOCTYPE html>
-<html lang="cn" dir="ltr" class="scroll-smooth" data-default-appearance="dark"
-  data-auto-appearance="true"><head>
+<html lang="cn" dir="ltr" class="scroll-smooth" data-default-appearance="light"
+  data-auto-appearance="true"><head><script src="/livereload.js?mindelay=10&amp;v=2&amp;port=1313&amp;path=livereload" data-no-instant defer></script>
   <meta charset="utf-8" />
   
   <meta http-equiv="content-language" content="zh-cn" />
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <link href="https://fonts.googleapis.com/css2?family=Comic+Neue:wght@400;700&display=swap" rel="stylesheet">
+  <style>
+    body {
+        font-family: 'Comic Neue', cursive;
+        font-size: 16px;
+        color: #333;
+    }
+</style>
   
   <title>Authors &middot; Foraeu Blog</title>
   <meta name="title" content="Authors &middot; Foraeu Blog" />
@@ -15,7 +23,7 @@
   
   
   
-  <link rel="canonical" href="https://foraeu.github.io/authors/" />
+  <link rel="canonical" href="http://localhost:1313/authors/" />
   
   <link rel="alternate" type="application/rss+xml" href="/authors/index.xml" title="Foraeu Blog" />
   
@@ -28,8 +36,10 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.67eb0befb1fb57e6528684f3a2ff6e0606a82100504705b66488d54a9f3fda9c2605c9bf3b70163208427288637a7b4d1a168384c1115e417458eae6b44b329c.css"
-    integrity="sha512-Z&#43;sL77H7V&#43;ZShoTzov9uBgaoIQBQRwW2ZIjVSp8/2pwmBcm/O3AWMghCcohjentNGhaDhMERXkF0WOrmtEsynA==" />
+  
+  
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.304a2b8d06b1f1f31b2b2ce8d5c81a663905cdc2aafe1060a32ad8dbadbd87ade8c168386c1085c01f908dddb5eae3f03b806830158002f18a15e84ebc924b80.css"
+    integrity="sha512-MEorjQax8fMbKyzo1cgaZjkFzcKq/hBgoyrY2629h63owWg4bBCFwB&#43;Qjd216uPwO4BoMBWAAvGKFehOvJJLgA==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -57,10 +67,16 @@
   
   
   
-  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
-  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
-  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
-  <link rel="manifest" href="/site.webmanifest" />
+  
+<link rel="icon" type="image/png" sizes="192x192" href="http://localhost:1313/favicon/android-chrome-192x192.png">
+<link rel="icon" type="image/png" sizes="512x512" href="http://localhost:1313/favicon/android-chrome-512x512.png">
+<link rel="apple-touch-icon" sizes="180x180" href="http://localhost:1313/favicon/apple-touch-icon.png">
+<link rel="icon" type="image/png" sizes="32x32" href="http://localhost:1313/favicon/favicon-32x32.png">
+<link rel="icon" type="image/png" sizes="16x16" href="http://localhost:1313/favicon/favicon-16x16.png">
+<link rel="shortcut icon" href="http://localhost:1313/favicon/favicon.ico">
+
+
+<link rel="manifest" href="http://localhost:1313/favicon/site.webmanifest">
   
   
   
@@ -68,7 +84,7 @@
   
   
   
-  <meta property="og:url" content="https://foraeu.github.io/authors/">
+  <meta property="og:url" content="http://localhost:1313/authors/">
   <meta property="og:site_name" content="Foraeu Blog">
   <meta property="og:title" content="Authors">
   <meta property="og:locale" content="zh_cn">
@@ -88,12 +104,6 @@
   
   
   <link href="https://github.com/foraeu" rel="me" />
-  
-  
-  <link href="https://music.163.com/#/user/home?id=421202432" rel="me" />
-  
-  
-  <link href="mailto:2807463354@qq.com" rel="me" />
   
   
   
@@ -132,6 +142,147 @@
   <meta name="theme-color"/>
   
   
+
+  <link rel="stylesheet" href="/css/APlayer.min.css">
+  <script src="/js/APlayer.min.js"></script>
+  <div id="aplayera" style="opacity:0.8;color: var(--tw-prose-headings);"></div>
+  <script type="text/javascript">
+    const staticDir = "http://localhost:1313/"
+    const ap = new APlayer({
+      container: document.getElementById('aplayera'),
+          fixed: true,
+          lrcType: 3,
+          order: 'random',
+          preload: 'auto',
+      audio: [{
+            url: "http://music.163.com/song/media/outer/url?id=27448352.mp3",
+            artist: "John Denver",
+            name: "Take Me Home Country Roads",
+            lrc: staticDir + "APlayer/Take Me Home Country Roads-John Denver.lrc", 
+            cover: staticDir + "music/take me home country roads.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=482633580.mp3",
+            artist: "Aimer",
+            name: "茜さす",
+            lrc: staticDir + "APlayer/茜さす (TVサイズ)-Aimer.lrc", 
+            cover: staticDir + "music/夕晖.jpg",
+        },
+        {
+            url: "https://freetyst.nf.migu.cn/public%2Fproduct10th%2FproductB35%2F2021%2F05%2F0617%2F2021%E5%B9%B405%E6%9C%8806%E6%97%A517%E7%82%B910%E5%88%86%E7%B4%A7%E6%80%A5%E5%86%85%E5%AE%B9%E5%87%86%E5%85%A5%E6%B5%B7%E8%9D%B6%E5%94%B1%E7%89%871%E9%A6%96%2F%E5%85%A8%E6%9B%B2%E8%AF%95%E5%90%AC%2FMp3_64_22_16%2F6005860TDR9172004.mp3?Key=abbdcc72869abd7e&Tim=1730018967213&channelid=01&msisdn=d5620a044a4041858f93c2a643e9e757",
+            artist: "许嵩",
+            name: "乌鸦",
+            lrc: staticDir + "APlayer/乌鸦.lrc", 
+            cover: staticDir + "music/乌鸦.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=29715440.mp3",
+            artist: "中島美嘉",
+            name: "雪の華",
+            lrc: staticDir + "APlayer/雪の華-中島美嘉.lrc", 
+            cover: staticDir + "music/雪之华.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=500665348.mp3",
+            artist: "朴树",
+            name: "Forever Young (Live)",
+            lrc: staticDir + "APlayer/Forever Young (Live)-朴树.lrc", 
+            cover: staticDir + "music/forever young.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=469391955.mp3",
+            artist: "Beyond",
+            name: "真的爱你",
+            lrc: staticDir + "APlayer/真的爱你-Beyond.lrc", 
+            cover: staticDir + "music/真的爱你.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=26508150.mp3",
+            artist: "WANDS",
+            name: "世界が終るまでは",
+            lrc: staticDir + "APlayer/世界が終るまでは-WANDS.lrc", 
+            cover: staticDir + "music/直到世界尽头.jpg",
+        },
+
+        {
+            url: "http://music.163.com/song/media/outer/url?id=1987948211.mp3",
+            artist: "牛尾憲輔",
+            name: "Night Cruising",
+            lrc: staticDir + "APlayer/Night Cruising-牛尾憲輔.lrc" , 
+            cover: staticDir + "music/夜间巡航.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=2081236.mp3",
+            artist: "Westlife",
+            name: "Seasons in the Sun",
+            lrc: staticDir + "APlayer/Seasons in the Sun-Westlife.lrc", 
+            cover: staticDir + "music/season in the song.jpg",
+        },
+        {
+            url: "http://music.163.com/song/media/outer/url?id=421639623.mp3",
+            artist: "久石譲",
+            name: "The Rain",
+            lrc: staticDir + "APlayer/The Rain-久石譲.lrc", 
+            cover: staticDir + "music/the rain.jpg",
+        },
+    ]
+  });
+  
+          ready();
+      
+      isRecover = false;
+      function ready(){
+          ap.on('canplay', function () {
+            ap.lrc.hide();
+              if(!isRecover){
+                  if(localStorage.getItem("musicIndex") != null){
+                      musicIndex = localStorage.getItem("musicIndex");
+                      musicTime = localStorage.getItem("musicTime");
+                      if(ap.list.index != musicIndex){
+                          ap.list.switch(musicIndex);
+                      }else{
+                          ap.seek(musicTime);
+                          ap.play();
+                          localStorage.clear();
+                          ap.setAttribute(muted,'');
+                          ap.setAttribute(playsinline,'');
+                          isRecover = true;
+                      }
+                  }else{
+                      isRecover = true;
+                  }
+              }
+          });
+      }
+  
+      window.onbeforeunload = function(event) {
+          if(!ap.audio.paused){
+              musicIndex = ap.list.index;
+              musicTime = ap.audio.currentTime;
+              localStorage.setItem("musicIndex",musicIndex);
+              localStorage.setItem("musicTime",musicTime);
+          }
+      };
+  
+  
+  
+  var element = document.getElementsByClassName("aplayer-title")[0];  
+  $(element).wrap("<a href='/radio/pick/'></a>");
+  </script>
+  
+  
+  
+  
+  
+  <style type="text/css">
+      .aplayer-title, .aplayer-list-light {
+          color:#000000cc;
+      }
+      .aplayer-list{
+          color:#717070bf;
+      }
+  </style>
+  
 </head>
 <body
   class="flex flex-col h-screen px-6 m-auto text-lg leading-7 max-w-7xl bg-neutral text-neutral-900 dark:bg-neutral-800 dark:text-neutral sm:px-14 md:px-24 lg:px-32 scrollbar-thin scrollbar-track-neutral-200 scrollbar-thumb-neutral-400 dark:scrollbar-track-neutral-800 dark:scrollbar-thumb-neutral-600">
@@ -143,6 +294,7 @@
   
   
   <div class="min-h-[148px]"></div>
+<div class="fixed inset-x-0 min-h-[130px] opacity-65 pl-[24px] pr-[24px] bg-gradient-to-b from-neutral from-60% dark:from-neutral-800 to-transparent mix-blend-normal" style="z-index:80"></div>
 <div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
   <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
   <div class="relative max-w-[64rem] ml-auto mr-auto">
@@ -156,18 +308,8 @@
             <span class="sr-only">Foraeu Blog</span>
 
             
-            <span class="logo object-scale-down object-left nozoom">
-                <svg role="img" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-  <defs>
-    <linearGradient id="grad1" x1="0%" y1="0%" x2="0%" y2="100%">
-      <stop offset="0%" style="stop-color:#6dd5ed;stop-opacity:1" />
-      <stop offset="100%" style="stop-color:#2193b0;stop-opacity:1" />
-    </linearGradient>
-  </defs>
-  <title>Flat</title>
-  <path d="M6.5455 17.4545v3.2728C6.5455 22.5348 5.0802 24 3.2727 24S0 22.5348 0 20.7273c0-1.8075 1.4652-3.2728 3.2727-3.2728Zm8.7272-8.7272V12c0 1.8075-1.4652 3.2727-3.2727 3.2727H5.4545c-1.8074 0-3.2727-1.4652-3.2727-3.2727 0-1.8075 1.4653-3.2727 3.2727-3.2727zM24 0v3.2727c0 1.8075-1.4652 3.2728-3.2727 3.2728H7.6363c-1.8074 0-3.2727-1.4653-3.2727-3.2728S5.829 0 7.6364 0Z" fill="url(#grad1)"/>
-</svg>
-            </span>
+            <img src="/img/logo.png" width="48" height="48"
+                class="logo max-h-[5rem] max-w-[5rem] object-scale-down object-left nozoom" alt="Foraeu Blog" />
             
 
         </a>
@@ -188,16 +330,6 @@
             
   <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
     
-    <span  class="mr-1" >
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg>
-  </span>
-
-
-    </span>
-    
     <p class="text-base font-medium" title="">
         主页
     </p>
@@ -208,16 +340,6 @@
             
             
   <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-    
-    <span  class="mr-1" >
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
-  </span>
-
-
-    </span>
     
     <p class="text-base font-medium" title="">
         日志
@@ -230,17 +352,6 @@
             
   <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
     
-    <span  class="mr-1" >
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-<path fill="currentColor" d="M234.7 42.7L197 56.8c-3 1.1-5 4-5 7.2s2 6.1 5 7.2l37.7 14.1L248.8 123c1.1 3 4 5 7.2 5s6.1-2 7.2-5l14.1-37.7L315 71.2c3-1.1 5-4 5-7.2s-2-6.1-5-7.2L277.3 42.7 263.2 5c-1.1-3-4-5-7.2-5s-6.1 2-7.2 5L234.7 42.7zM46.1 395.4c-18.7 18.7-18.7 49.1 0 67.9l34.6 34.6c18.7 18.7 49.1 18.7 67.9 0L529.9 116.5c18.7-18.7 18.7-49.1 0-67.9L495.3 14.1c-18.7-18.7-49.1-18.7-67.9 0L46.1 395.4zM484.6 82.6l-105 105-23.3-23.3 105-105 23.3 23.3zM7.5 117.2C3 118.9 0 123.2 0 128s3 9.1 7.5 10.8L64 160l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L128 160l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L128 96 106.8 39.5C105.1 35 100.8 32 96 32s-9.1 3-10.8 7.5L64 96 7.5 117.2zm352 256c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L416 416l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L480 416l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L480 352l-21.2-56.5c-1.7-4.5-6-7.5-10.8-7.5s-9.1 3-10.8 7.5L416 352l-56.5 21.2z"/></svg>
-  </span>
-
-
-    </span>
-    
     <p class="text-base font-medium" title="">
         说说
     </p>
@@ -250,94 +361,23 @@
 
             
             
-  <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-    
-    <span  class="mr-1" >
-        
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg>
-  </span>
-
-
-    </span>
+  <a href="/tags/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
     
     <p class="text-base font-medium" title="">
-        关于
+        标签
     </p>
 </a>
 
 
 
             
-             
-  <div>
-  <div class="cursor-pointer flex items-center nested-menu">
-    
-    <span  class="mr-1" >
-      
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
-
-  </span>
-
-
-    </span>
-    
-    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
-      链接
-    </a>
-    <span>
-      
-
-  <span class="relative block icon">
-    <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-
-  </span>
-
-
-    </span>
-  </div>
-  <div class="absolute menuhide">
-    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
-      <div class="flex flex-col space-y-3">
-        
-        <a href="https://github.com/foraeu" 
-          target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-          
-          <span  class="mr-1" >
             
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-
-  </span>
-
-
-          </span>
-          
-          <p class="text-sm font-sm" title="">
-            github
-          </p>
-        </a>
-        
-      </div>
-    </div>
-  </div>
-</div>
+  <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    
+    <p class="text-base font-medium" title="">
+        关于
+    </p>
+</a>
 
 
 
@@ -478,16 +518,6 @@
   <li class="mt-1">
     <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
-        <div  class="mr-2" >
-            
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512"><path fill="currentColor" d="M280.37 148.26L96 300.11V464a16 16 0 0 0 16 16l112.06-.29a16 16 0 0 0 15.92-16V368a16 16 0 0 1 16-16h64a16 16 0 0 1 16 16v95.64a16 16 0 0 0 16 16.05L464 480a16 16 0 0 0 16-16V300L295.67 148.26a12.19 12.19 0 0 0-15.3 0zM571.6 251.47L488 182.56V44.05a12 12 0 0 0-12-12h-56a12 12 0 0 0-12 12v72.61L318.47 43a48 48 0 0 0-61 0L4.34 251.47a12 12 0 0 0-1.6 16.9l25.5 31A12 12 0 0 0 45.15 301l235.22-193.74a12.19 12.19 0 0 1 15.3 0L530.9 301a12 12 0 0 0 16.9-1.6l25.5-31a12 12 0 0 0-1.7-16.93z"/></svg>
-  </span>
-
-
-        </div>
-        
         <p class="text-bg font-bg" title="">
             主页
         </p>
@@ -502,16 +532,6 @@
                     
   <li class="mt-1">
     <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-        
-        <div  class="mr-2" >
-            
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" height="1em" viewBox="0 0 512 512"><path fill="currentColor" d="M441 58.9L453.1 71c9.4 9.4 9.4 24.6 0 33.9L424 134.1 377.9 88 407 58.9c9.4-9.4 24.6-9.4 33.9 0zM209.8 256.2L344 121.9 390.1 168 255.8 302.2c-2.9 2.9-6.5 5-10.4 6.1l-58.5 16.7 16.7-58.5c1.1-3.9 3.2-7.5 6.1-10.4zM373.1 25L175.8 222.2c-8.7 8.7-15 19.4-18.3 31.1l-28.6 100c-2.4 8.4-.1 17.4 6.1 23.6s15.2 8.5 23.6 6.1l100-28.6c11.8-3.4 22.5-9.7 31.1-18.3L487 138.9c28.1-28.1 28.1-73.7 0-101.8L474.9 25C446.8-3.1 401.2-3.1 373.1 25zM88 64C39.4 64 0 103.4 0 152V424c0 48.6 39.4 88 88 88H360c48.6 0 88-39.4 88-88V312c0-13.3-10.7-24-24-24s-24 10.7-24 24V424c0 22.1-17.9 40-40 40H88c-22.1 0-40-17.9-40-40V152c0-22.1 17.9-40 40-40H200c13.3 0 24-10.7 24-24s-10.7-24-24-24H88z"/></svg>
-  </span>
-
-
-        </div>
         
         <p class="text-bg font-bg" title="">
             日志
@@ -528,17 +548,6 @@
   <li class="mt-1">
     <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
-        <div  class="mr-2" >
-            
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-<path fill="currentColor" d="M234.7 42.7L197 56.8c-3 1.1-5 4-5 7.2s2 6.1 5 7.2l37.7 14.1L248.8 123c1.1 3 4 5 7.2 5s6.1-2 7.2-5l14.1-37.7L315 71.2c3-1.1 5-4 5-7.2s-2-6.1-5-7.2L277.3 42.7 263.2 5c-1.1-3-4-5-7.2-5s-6.1 2-7.2 5L234.7 42.7zM46.1 395.4c-18.7 18.7-18.7 49.1 0 67.9l34.6 34.6c18.7 18.7 49.1 18.7 67.9 0L529.9 116.5c18.7-18.7 18.7-49.1 0-67.9L495.3 14.1c-18.7-18.7-49.1-18.7-67.9 0L46.1 395.4zM484.6 82.6l-105 105-23.3-23.3 105-105 23.3 23.3zM7.5 117.2C3 118.9 0 123.2 0 128s3 9.1 7.5 10.8L64 160l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L128 160l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L128 96 106.8 39.5C105.1 35 100.8 32 96 32s-9.1 3-10.8 7.5L64 96 7.5 117.2zm352 256c-4.5 1.7-7.5 6-7.5 10.8s3 9.1 7.5 10.8L416 416l21.2 56.5c1.7 4.5 6 7.5 10.8 7.5s9.1-3 10.8-7.5L480 416l56.5-21.2c4.5-1.7 7.5-6 7.5-10.8s-3-9.1-7.5-10.8L480 352l-21.2-56.5c-1.7-4.5-6-7.5-10.8-7.5s-9.1 3-10.8 7.5L416 352l-56.5 21.2z"/></svg>
-  </span>
-
-
-        </div>
-        
         <p class="text-bg font-bg" title="">
             说说
         </p>
@@ -552,21 +561,10 @@
 
                     
   <li class="mt-1">
-    <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-        
-        <div  class="mr-2" >
-            
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 576 512">
-<path fill="currentColor" d="M288 32c-80.8 0-145.5 36.8-192.6 80.6C48.6 156 17.3 208 2.5 243.7c-3.3 7.9-3.3 16.7 0 24.6C17.3 304 48.6 356 95.4 399.4C142.5 443.2 207.2 480 288 480s145.5-36.8 192.6-80.6c46.8-43.5 78.1-95.4 93-131.1c3.3-7.9 3.3-16.7 0-24.6c-14.9-35.7-46.2-87.7-93-131.1C433.5 68.8 368.8 32 288 32zM432 256c0 79.5-64.5 144-144 144s-144-64.5-144-144s64.5-144 144-144s144 64.5 144 144zM288 192c0 35.3-28.7 64-64 64c-11.5 0-22.3-3-31.6-8.4c-.2 2.8-.4 5.5-.4 8.4c0 53 43 96 96 96s96-43 96-96s-43-96-96-96c-2.8 0-5.6 .1-8.4 .4c5.3 9.3 8.4 20.1 8.4 31.6z"/></svg>
-  </span>
-
-
-        </div>
+    <a href="/tags/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-bg font-bg" title="">
-            关于
+            标签
         </p>
     </a>
 </li>
@@ -576,69 +574,15 @@
 
                     
 
-                     
+                    
   <li class="mt-1">
-    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-        
-        <span  class="mr-1" >
-            
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 512"><path fill="currentColor" d="M172.5 131.1C228.1 75.51 320.5 75.51 376.1 131.1C426.1 181.1 433.5 260.8 392.4 318.3L391.3 319.9C381 334.2 361 337.6 346.7 327.3C332.3 317 328.9 297 339.2 282.7L340.3 281.1C363.2 249 359.6 205.1 331.7 177.2C300.3 145.8 249.2 145.8 217.7 177.2L105.5 289.5C73.99 320.1 73.99 372 105.5 403.5C133.3 431.4 177.3 435 209.3 412.1L210.9 410.1C225.3 400.7 245.3 404 255.5 418.4C265.8 432.8 262.5 452.8 248.1 463.1L246.5 464.2C188.1 505.3 110.2 498.7 60.21 448.8C3.741 392.3 3.741 300.7 60.21 244.3L172.5 131.1zM467.5 380C411 436.5 319.5 436.5 263 380C213 330 206.5 251.2 247.6 193.7L248.7 192.1C258.1 177.8 278.1 174.4 293.3 184.7C307.7 194.1 311.1 214.1 300.8 229.3L299.7 230.9C276.8 262.1 280.4 306.9 308.3 334.8C339.7 366.2 390.8 366.2 422.3 334.8L534.5 222.5C566 191 566 139.1 534.5 108.5C506.7 80.63 462.7 76.99 430.7 99.9L429.1 101C414.7 111.3 394.7 107.1 384.5 93.58C374.2 79.2 377.5 59.21 391.9 48.94L393.5 47.82C451 6.731 529.8 13.25 579.8 63.24C636.3 119.7 636.3 211.3 579.8 267.7L467.5 380z"/></svg>
-
-  </span>
-
-
-        </span>
+    <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-bg font-bg" title="">
-            链接
-        </p>
-        <span>
-            
-
-  <span class="relative block icon">
-    <svg
-  xmlns="http://www.w3.org/2000/svg"
-  viewBox="0 0 20 20"
-  fill="currentColor"
-  aria-hidden="true"
->
-  <path
-    fill-rule="evenodd"
-    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
-    clip-rule="evenodd"
-  />
-</svg>
-
-  </span>
-
-
-        </span>
-    </a>
-</li>
-
-<li class="mt-1">
-    <a href="https://github.com/foraeu"  target="_blank"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-        
-        <span  class="mr-1" >
-            
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
-
-  </span>
-
-
-        </span>
-        
-        <p class="text-sm font-small" title="">
-            github
+            关于
         </p>
     </a>
 </li>
-
-<li class="mb-2"></li>
 
 
 
@@ -674,11 +618,49 @@
       
 
 
+
+
+
+
+ 
+  
+   
+  
+ 
+
+
+
+<div id="hero" class="h-[150px] md:h-[200px]"></div>
+
+
+
+    
+    <div class="fixed inset-x-0 top-0 h-[800px] single_hero_background nozoom"
+    style="background-image:url(/img/studio-ghibli-7415572_1920_hu2885735154688839451.jpg);">
+    
+
+
+    <div class="absolute inset-0 bg-gradient-to-t from-neutral dark:from-neutral-800 to-transparent mix-blend-normal">
+    </div>
+    <div
+        class="absolute inset-0 opacity-60 bg-gradient-to-t from-neutral dark:from-neutral-800 to-neutral-100 dark:to-neutral-800 mix-blend-normal">
+    </div>
+</div>
+
+<div id="background-blur" class="fixed opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl"></div>
+<script>
+    window.addEventListener('scroll', function (e) {
+        var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+        var background_blur = document.getElementById('background-blur');
+        background_blur.style.opacity = (scroll / 300)
+    });
+</script>
+
  
 
   <header>
     
-    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral">Authors</h1>
+    <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral" style="text-align: center;">标签</h1>
     <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
       
 
@@ -711,29 +693,119 @@
     </div>
   </header>
   
-
+  <script>
+    var oid = "views_taxonomy_authors"
+    var oid_likes = "likes_taxonomy_authors"
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
   
 
-  <section class="flex flex-wrap max-w-prose -mx-2 overflow-hidden">
-    
-      <article class="w-full px-2 my-3 overflow-hidden sm:w-1/2 md:w-1/3 lg:w-1/4 xl:w-1/4">
-    <h2 class="flex items-center">
-      <a
-        class="text-xl font-medium decoration-primary-500 hover:underline hover:underline-offset-2"
-        href="/authors/foraeu/"
-        >Foraeu</a
-      >
-      
-        <span class="px-2 text-base text-primary-500">&middot;</span>
-        <span class="text-base text-neutral-400">
-          1
-        </span>
-      
-    </h2>
-  </article>
-    
-  </section>
+  
+  
+  
+  
 
+
+
+
+
+
+
+
+
+<style>
+   
+  .tag-cloud {
+    display: block;
+    min-height: calc(100vh - 360px);
+    max-width: 85%;
+    margin: 60px auto 80px;
+    padding: 0px 15px;
+    font-size: 19px;
+    line-height: 1.7;
+  }
+
+  .tag-cloud-item {
+    margin: 0;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    color: rgb(var(--color-neutral-800), var(--tw-text-opacity));
+    font-weight: 500;
+     
+  }
+
+  .dark .tag-cloud-item {
+    color: rgb(var(--color-neutral-100), var(--tw-text-opacity));
+  }
+
+  .tag-cloud-item li {
+    display: inline-block;
+    list-style: none;
+    padding: 0px;
+  }
+
+  .tag-wrapper {
+    display: inline-block;
+     
+    border-radius: 20px;
+    padding: 2px 15px;
+    transition: background-color 0.3s ease, transform 0.3s ease;
+  }
+
+  .tag-title {
+    text-decoration: none;
+    transition: color 0.3s ease;
+  }
+
+  .tag-wrapper:hover {
+    transform: scale(1.05);
+  }
+
+
+  @media (max-width: 768px) {
+    .tag-cloud {
+      max-width: 120%;
+      font-size: 19px;
+      line-height: 1.8;
+      margin: 100px auto;
+    }
+
+    .tag-wrapper {
+      padding: 0px 0px;
+    }
+
+    .tag-cloud {
+      padding: 0px;
+    }
+  }
+</style>
+
+<main class="tag-cloud">
+  <div class="tag-cloud-content">
+    
+    <ul class="tag-cloud-item">
+      
+      
+      
+      
+      
+      <li>
+        <span class="tag-wrapper">
+          <a href="/authors/foraeu/" class="tag-title" style="font-size:1rem">
+            Foraeu (1)
+          </a>
+        </span>
+      </li>
+      
+    </ul>
+    
+  </div>
+</main>
+  
   
 
 
@@ -742,31 +814,6 @@
     </main><footer id="site-footer" class="py-10 print:hidden">
   
   
-    
-    <nav class="flex flex-row pb-4 text-base font-medium text-neutral-500 dark:text-neutral-400">
-      <ul class="flex flex-col list-none sm:flex-row">
-        
-        <li class="flex mb-1 ltr:text-right rtl:text-left sm:mb-0 ltr:sm:mr-7 ltr:sm:last:mr-0 rtl:sm:ml-7 rtl:sm:last:ml-0">
-          <a class="decoration-primary-500 hover:underline hover:decoration-2 hover:underline-offset-2 flex items-center" href="/tags/"
-            title="">
-            
-            <span  class="mr-1" >
-                
-
-  <span class="relative block icon">
-    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512"><path fill="currentColor" d="M48 32H197.5C214.5 32 230.7 38.74 242.7 50.75L418.7 226.7C443.7 251.7 443.7 292.3 418.7 317.3L285.3 450.7C260.3 475.7 219.7 475.7 194.7 450.7L18.75 274.7C6.743 262.7 0 246.5 0 229.5V80C0 53.49 21.49 32 48 32L48 32zM112 176C129.7 176 144 161.7 144 144C144 126.3 129.7 112 112 112C94.33 112 80 126.3 80 144C80 161.7 94.33 176 112 176z"/></svg>
-
-  </span>
-
-
-            </span>
-            
-            标签
-          </a>
-        </li>
-        
-      </ul>
-    </nav>
     
   
   <div class="flex items-center justify-between">
@@ -810,7 +857,7 @@
 <div
   id="search-wrapper"
   class="invisible fixed inset-0 flex h-screen w-screen cursor-default flex-col bg-neutral-500/50 p-4 backdrop-blur-sm dark:bg-neutral-900/50 sm:p-6 md:p-[10vh] lg:p-[12vh]"
-  data-url="https://foraeu.github.io/"
+  data-url="http://localhost:1313/"
   style="z-index:500"
 >
   <div
