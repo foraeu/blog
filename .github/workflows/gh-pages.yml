@@ -18,8 +18,8 @@ jobs:
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
       with:
-        hugo-version: '0.131.0'
-        extended: false          # 使用 extended 版 hugo
+        hugo-version: '0.135.0'
+        extended: true          # 使用 extended 版 hugo
 
     - name: Build the website
       run: hugo --gc --minify --cleanDestinationDir # 这里我加了附加参数，可以不需要
