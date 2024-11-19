@@ -38,8 +38,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.304a2b8d06b1f1f31b2b2ce8d5c81a663905cdc2aafe1060a32ad8dbadbd87ade8c168386c1085c01f908dddb5eae3f03b806830158002f18a15e84ebc924b80.css"
-    integrity="sha512-MEorjQax8fMbKyzo1cgaZjkFzcKq/hBgoyrY2629h63owWg4bBCFwB&#43;Qjd216uPwO4BoMBWAAvGKFehOvJJLgA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b3baee66020d60db79deb7dc7b41f351adf16dce994793a0477d14adddf90aad9d9a6ac000ab7e07ab91d96db70ba61ba83d55d4dc07f168399dfbdaad9457b5.css"
+    integrity="sha512-s7ruZgINYNt53rfce0HzUa3xbc6ZR5OgR30Urd35Cq2dmmrAAKt&#43;B6uR2W23C6YbqD1V1NwH8Wg5nfvarZRXtQ==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -82,6 +82,9 @@
   
   
   
+  
+  
+  <meta name="baidu-site-verification" content="codeva-ashLcc4Hzj" />
   
   
   <meta property="og:url" content="http://localhost:1313/posts/">
@@ -293,13 +296,93 @@
   </div>
   
   
-  <div class="min-h-[148px]"></div>
-<div class="fixed inset-x-0 min-h-[130px] opacity-65 pl-[24px] pr-[24px] bg-gradient-to-b from-neutral from-60% dark:from-neutral-800 to-transparent mix-blend-normal" style="z-index:80"></div>
-<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
-  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
-  <div class="relative max-w-[64rem] ml-auto mr-auto">
-    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
-    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+  
+<script>
+let lastScrollTop = 0;
+let lastScrollDirection = 0;
+let island_header_style_top = 15;
+let accumulated_scroll = 0;
+
+window.addEventListener("scroll", function () {
+    const scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    let currScrollDirection = scroll - lastScrollTop > 0 ? 1 : -1;
+    
+    const island_header = document.getElementById("island-header");
+    const subheader = document.querySelector('.main-menu + .main-menu');
+    
+    
+    const opacity = Math.min(scroll / 300, 0.9);
+    const blur = Math.min(scroll / 100 * 10, 10);
+    
+    
+    island_header.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+    island_header.style.backdropFilter = `blur(${blur}px)`;
+    if(subheader) {
+        subheader.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+        subheader.style.backdropFilter = `blur(${blur}px)`;
+    }
+    
+    
+    if (scroll > 100) {
+        if (currScrollDirection !== lastScrollDirection) {
+            accumulated_scroll = 0;
+        } else {
+            accumulated_scroll += Math.abs(scroll - lastScrollTop);
+        }
+        
+        if (accumulated_scroll > 50 || currScrollDirection == -1) {
+            
+            island_header_style_top = currScrollDirection === 1 ? 
+                Math.max(-100, island_header_style_top - 15) : 
+                Math.min(15, island_header_style_top + 15);    
+                
+            
+            island_header.style.transform = `translateX(-50%) translateY(${island_header_style_top}px)`;
+            if(subheader) {
+                subheader.style.transform = `translateX(-50%) translateY(${island_header_style_top + 50}px)`;
+            }
+        }
+    }
+    
+    lastScrollTop = scroll;
+    lastScrollDirection = currScrollDirection;
+});
+</script>
+
+
+<div id="island-header" style="
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;  /* 移动端下宽度更大 */
+    max-width: 900px;
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.45),
+        rgba(147, 197, 253, 0.35) 20%,
+        rgba(167, 243, 208, 0.4) 50%,
+        rgba(147, 197, 253, 0.35) 80%,
+        rgba(110, 231, 183, 0.4)
+    );
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 0.75rem;  /* 移动端圆角稍小 */
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.03),
+        0 1px 3px rgba(147, 197, 253, 0.2) inset,
+        0 2px 6px rgba(167, 243, 208, 0.15) inset;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 0.25rem;  /* 移动端内边距更小 */
+    @media (min-width: 768px) {  /* 桌面端样式 */
+        width: 70%;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+    }
+    "
+    class="main-menu flex items-center justify-between px-2 py-1 sm:px-6 md:justify-start space-x-3">  
+    
     
     
     
@@ -338,24 +421,57 @@
 
 
             
-            
-  <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
     
-    <p class="text-base font-medium" title="">
-        日志
-    </p>
-</a>
+    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      文章
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
 
 
-
-            
-            
-  <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-    
-    <p class="text-base font-medium" title="">
-        说说
-    </p>
-</a>
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            日志
+          </p>
+        </a>
+        
+        <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            说说
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -400,7 +516,6 @@
 
             </button>
             
-
 
             
             
@@ -503,17 +618,18 @@
                     <li id="menu-close-button">
                         <span
                             class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                            
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
 
   </span>
 
-</span>
+
+                        </span>
                     </li>
 
                     
-
                     
   <li class="mt-1">
     <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -526,39 +642,61 @@
 
 
 
-
                     
-
-                    
+                     
   <li class="mt-1">
-    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-bg font-bg" title="">
+            文章
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
             日志
         </p>
     </a>
 </li>
 
-
-
-
-                    
-
-                    
-  <li class="mt-1">
+<li class="mt-1">
     <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
-        <p class="text-bg font-bg" title="">
+        <p class="text-sm font-small" title="">
             说说
         </p>
     </a>
 </li>
 
+<li class="mb-2"></li>
 
 
 
                     
-
                     
   <li class="mt-1">
     <a href="/tags/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -571,9 +709,7 @@
 
 
 
-
                     
-
                     
   <li class="mt-1">
     <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -586,14 +722,12 @@
 
 
 
-
                     
 
                 </ul>
                 
-                
-
             </div>
+            
         </label>
     </div>
 </div>
@@ -602,185 +736,625 @@
 
 
 
-  </div>
-</div>
+
+<style>
+    main {
+        margin-top: 60px !important;   
+    }
+    .has-submenu main {
+        margin-top: 100px !important;   
+    }
+    @media (min-width: 768px) {
+        main {
+            margin-top: 80px !important;   
+        }
+        .has-submenu main {
+            margin-top: 120px !important;   
+        }
+    }
+</style>
+
+
 <script>
-  window.addEventListener('scroll', function (e) {
-    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    var background_blur = document.getElementById('menu-blur');
-    background_blur.style.opacity = (scroll / 300);
-  });
+    if (document.querySelector('.main-menu + .main-menu')) {
+        document.body.classList.add('has-submenu');
+    }
 </script>
 
   
   <div class="relative flex flex-col grow">
     <main id="main-content" class="grow">
       
-<div class="px-6 py-8">
-  <div class="max-w-4xl mx-auto">
-    <h1 class="mb-8 text-4xl font-bold text-neutral-900 dark:text-neutral-100">
+
+
+
+
+
+
+ 
+  
+   
+  
+ 
+
+        
+            <div class="w-full h-36 md:h-56 lg:h-72 single_hero_basic nozoom" style="background-image:url(/img/studio-ghibli-7415572_1920_hu2885735154688839451.jpg);"></div>
+        
+    
+ <header>
+  
+  <h1 class="mt-5 text-4xl font-extrabold text-neutral-900 dark:text-neutral"></h1>
+  <div class="mt-1 mb-2 text-base text-neutral-500 dark:text-neutral-400 print:hidden">
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+</div>
+
+
+  </div>
+  
+  
+    
+    
       
-    </h1>
+      
+    
+  <script>
+    var oid = "views_posts\\_index.md"
+    var oid_likes = "likes_posts\\_index.md"
+  </script>
+  
+  
+  <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+  
+  </header>
+  <section class="mt-0 prose flex max-w-full flex-col dark:prose-invert lg:flex-row">
+    
+    <div class="min-w-0 min-h-0 max-w-prose">
+      <p><font size="5"><strong>日志</strong></font></p>
+
+    </div>
+
+
+
+
+  </section>
+  
 
     
-    <div class="space-y-16">
+    
+    
+    
+    
+
+    
+
+    <section class="space-y-10 w-full">
       
-      <div class="space-y-8">
         
-        <h2 class="text-2xl font-bold text-neutral-800 dark:text-neutral-200">
+        
+        <h2 class="mt-12 text-2xl font-bold text-neutral-700 first:mt-8 dark:text-neutral-300">
           2024
         </h2>
         
         
-        <div class="space-y-6">
-          
-          <article class="p-6 bg-neutral-50 dark:bg-neutral-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-start gap-4">
-              
-              
-              <time datetime="2024-11-13" class="text-lg font-medium text-neutral-600 dark:text-neutral-400 min-w-[80px] mr-2">
-                11-13
-              </time>
-              
-              
-              <div class="flex-1">
-                
-                <h2>
-                  <a href="http://localhost:1313/posts/3/" class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 hover:text-primary-600 dark:hover:text-primary-400">
-                    矩阵合并的优化
-                  </a>
-                </h2>
+        
 
-                
-                
-                <div class="mt-2 space-x-2">
-                  
-                  <a href="/tags/%E7%9F%A9%E9%98%B5%E5%90%88%E5%B9%B6" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-                    #矩阵合并
-                  </a>
-                  
-                  <a href="/tags/python" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-                    #python
-                  </a>
-                  
-                  <a href="/tags/numpy" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-                    #numpy
-                  </a>
-                  
-                </div>
-                
-              </div>
-            </div>
-          </article>
-          
-          <article class="p-6 bg-neutral-50 dark:bg-neutral-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-start gap-4">
-              
-              
-              <time datetime="2024-11-07" class="text-lg font-medium text-neutral-600 dark:text-neutral-400 min-w-[80px] mr-2">
-                11-07
-              </time>
-              
-              
-              <div class="flex-1">
-                
-                <h2>
-                  <a href="http://localhost:1313/posts/2/" class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 hover:text-primary-600 dark:hover:text-primary-400">
-                    一首小诗
-                  </a>
-                </h2>
 
-                
-                
-                <div class="mt-2 space-x-2">
-                  
-                  <a href="/tags/%E6%89%93%E6%B2%B9%E8%AF%97" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-                    #打油诗
-                  </a>
-                  
-                </div>
-                
-              </div>
-            </div>
-          </article>
-          
-          <article class="p-6 bg-neutral-50 dark:bg-neutral-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-start gap-4">
-              
-              
-              <time datetime="2024-10-30" class="text-lg font-medium text-neutral-600 dark:text-neutral-400 min-w-[80px] mr-2">
-                10-30
-              </time>
-              
-              
-              <div class="flex-1">
-                
-                <h2>
-                  <a href="http://localhost:1313/posts/1/" class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 hover:text-primary-600 dark:hover:text-primary-400">
-                    距离计算的优化方法
-                  </a>
-                </h2>
 
-                
-                
-                <div class="mt-2 space-x-2">
-                  
-                  <a href="/tags/%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-                    #距离计算
-                  </a>
-                  
-                  <a href="/tags/python" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-                    #python
-                  </a>
-                  
-                </div>
-                
-              </div>
-            </div>
-          </article>
-          
-          <article class="p-6 bg-neutral-50 dark:bg-neutral-800 rounded-lg shadow-sm hover:shadow-md transition-shadow duration-200">
-            <div class="flex items-start gap-4">
-              
-              
-              <time datetime="2024-10-26" class="text-lg font-medium text-neutral-600 dark:text-neutral-400 min-w-[80px] mr-2">
-                10-26
-              </time>
-              
-              
-              <div class="flex-1">
-                
-                <h2>
-                  <a href="http://localhost:1313/posts/0/" class="text-xl font-semibold text-neutral-900 dark:text-neutral-100 hover:text-primary-600 dark:hover:text-primary-400">
-                    Hello World
-                  </a>
-                </h2>
 
-                
-                
-                <div class="mt-2 space-x-2">
-                  
-                  <a href="/tags/%E7%AC%AC%E4%B8%80%E7%AF%87" class="text-sm text-neutral-600 dark:text-neutral-400 hover:text-primary-600 dark:hover:text-primary-400">
-                    #第一篇
-                  </a>
-                  
-                </div>
-                
-              </div>
-            </div>
-          </article>
-          
-        </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a class="flex flex-wrap article " href="/posts/3/">
+    <div class=" mt-3 md:mt-0">
+      <div class="items-center text-left text-xl font-semibold">
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/posts/3/">矩阵合并的优化</div>
+        
+        
+        
+      </div>
+      <div class="text-sm text-neutral-500 dark:text-neutral-400">
+        
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-11-13T19:31:18&#43;08:00">2024年11月13日</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%9F%A9%E9%98%B5%E5%90%88%E5%B9%B6/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    矩阵合并
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/python/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Python
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/numpy/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Numpy
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
       </div>
       
     </div>
+  </a>
 
-    
-    
-    
-  </div>
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a class="flex flex-wrap article " href="/posts/2/">
+    <div class=" mt-3 md:mt-0">
+      <div class="items-center text-left text-xl font-semibold">
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/posts/2/">一首小诗</div>
+        
+        
+        
+      </div>
+      <div class="text-sm text-neutral-500 dark:text-neutral-400">
+        
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-11-07T03:07:51&#43;08:00">2024年11月7日</time>
+  
+
+  
+  
 </div>
 
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E6%89%93%E6%B2%B9%E8%AF%97/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    打油诗
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+      </div>
+      
+    </div>
+  </a>
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a class="flex flex-wrap article " href="/posts/1/">
+    <div class=" mt-3 md:mt-0">
+      <div class="items-center text-left text-xl font-semibold">
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/posts/1/">距离计算的优化方法</div>
+        
+        
+        
+      </div>
+      <div class="text-sm text-neutral-500 dark:text-neutral-400">
+        
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-30T18:35:47&#43;08:00">2024年10月30日</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    距离计算
+  </span>
+</span>
+  </span>
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/python/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    Python
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+      </div>
+      
+    </div>
+  </a>
+
+        
+        
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  <a class="flex flex-wrap article " href="/posts/0/">
+    <div class=" mt-3 md:mt-0">
+      <div class="items-center text-left text-xl font-semibold">
+        
+        <div class="font-bold text-xl text-neutral-800 decoration-primary-500 hover:underline hover:underline-offset-2 dark:text-neutral"
+          href="/posts/0/">Hello World</div>
+        
+        
+        
+      </div>
+      <div class="text-sm text-neutral-500 dark:text-neutral-400">
+        
+
+
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  <time datetime="2024-10-26T00:00:00&#43;00:00">2024年10月26日</time>
+  
+
+  
+  
+</div>
+
+
+
+
+
+<div class="flex flex-row flex-wrap items-center">
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  <span style="margin-top:0.5rem" class="mr-2" onclick="window.open(&#34;/tags/%E7%AC%AC%E4%B8%80%E7%AF%87/&#34;,'_self');">
+    <span class="flex" style="cursor: pointer;">
+  <span class="rounded-md border border-primary-400 px-1 py-[1px] text-xs font-normal text-primary-700 dark:border-primary-600 dark:text-primary-400">
+    第一篇
+  </span>
+</span>
+  </span>
+  
+  
+  
+  
+</div>
+
+
+
+
+      </div>
+      
+    </div>
+  </a>
+
+        
+        
+      
+    </section>
+
+    
+
+  
+
+    
+
+  
       <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
   <a href="#the-top"
     class="pointer-events-auto sticky top-[calc(100vh-5.5rem)] flex h-12 w-12 mb-16 items-center justify-center rounded-full bg-neutral/50 text-xl text-neutral-700 hover:text-primary-600 dark:bg-neutral-800/50 dark:text-neutral dark:hover:text-primary-400"

@@ -57,7 +57,7 @@ window.addEventListener("scroll", function () {
     top: 15px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
+    width: 90%;  /* 移动端下宽度更大 */
     max-width: 900px;
     background: linear-gradient(
         135deg, 
@@ -69,16 +69,21 @@ window.addEventListener("scroll", function () {
     );
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: 1rem;
+    border-radius: 0.75rem;  /* 移动端圆角稍小 */
     box-shadow: 
         0 4px 6px rgba(0, 0, 0, 0.03),
         0 1px 3px rgba(147, 197, 253, 0.2) inset,
         0 2px 6px rgba(167, 243, 208, 0.15) inset;
     transition: all 0.3s ease;
     z-index: 1000;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem;  /* 移动端内边距更小 */
+    @media (min-width: 768px) {  /* 桌面端样式 */
+        width: 70%;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+    }
     "
-    class="main-menu flex items-center justify-between px-4 py-2 sm:px-6 md:justify-start space-x-3">  
+    class="main-menu flex items-center justify-between px-2 py-1 sm:px-6 md:justify-start space-x-3">  
     
     {{ if .Site.Params.Logo }}
     {{ $logo := resources.Get .Site.Params.Logo }}
@@ -227,7 +232,7 @@ window.addEventListener("scroll", function () {
     top: 65px;
     left: 50%;
     transform: translateX(-50%);
-    width: 70%;
+    width: 90%;  /* 移动端宽度更大 */
     max-width: 900px;
     background: linear-gradient(
         135deg, 
@@ -239,14 +244,19 @@ window.addEventListener("scroll", function () {
     );
     backdrop-filter: blur(8px);
     border: 1px solid rgba(255, 255, 255, 0.45);
-    border-radius: 1rem;
+    border-radius: 0.75rem;  /* 移动端圆角稍小 */
     box-shadow: 
         0 4px 6px rgba(0, 0, 0, 0.03),
         0 1px 3px rgba(147, 197, 253, 0.2) inset,
         0 2px 6px rgba(167, 243, 208, 0.15) inset;
     z-index: 999;
-    padding: 0.25rem 0.5rem;
+    padding: 0.25rem;  /* 移动端内边距更小 */
     transition: all 0.3s ease;
+    @media (min-width: 768px) {  /* 桌面端样式 */
+        width: 70%;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+    }
     ">
     <div class="hidden md:flex items-center space-x-5">
         {{ range .Site.Menus.subnavigation }}
@@ -281,10 +291,18 @@ window.addEventListener("scroll", function () {
 <!-- 更新主内容区域的上边距 -->
 <style>
     main {
-        margin-top: 80px !important;  /* 减小上边距 */
+        margin-top: 60px !important;  /* 移动端上边距更小 */
     }
     .has-submenu main {
-        margin-top: 120px !important;  /* 减小上边距 */
+        margin-top: 100px !important;  /* 移动端上边距更小 */
+    }
+    @media (min-width: 768px) {
+        main {
+            margin-top: 80px !important;  /* 桌面端保持原有上边距 */
+        }
+        .has-submenu main {
+            margin-top: 120px !important;  /* 桌面端保持原有上边距 */
+        }
     }
 </style>
 

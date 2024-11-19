@@ -36,8 +36,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.304a2b8d06b1f1f31b2b2ce8d5c81a663905cdc2aafe1060a32ad8dbadbd87ade8c168386c1085c01f908dddb5eae3f03b806830158002f18a15e84ebc924b80.css"
-    integrity="sha512-MEorjQax8fMbKyzo1cgaZjkFzcKq/hBgoyrY2629h63owWg4bBCFwB&#43;Qjd216uPwO4BoMBWAAvGKFehOvJJLgA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b3baee66020d60db79deb7dc7b41f351adf16dce994793a0477d14adddf90aad9d9a6ac000ab7e07ab91d96db70ba61ba83d55d4dc07f168399dfbdaad9457b5.css"
+    integrity="sha512-s7ruZgINYNt53rfce0HzUa3xbc6ZR5OgR30Urd35Cq2dmmrAAKt&#43;B6uR2W23C6YbqD1V1NwH8Wg5nfvarZRXtQ==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -82,6 +82,9 @@
   
   
   
+  <meta name="baidu-site-verification" content="codeva-ashLcc4Hzj" />
+  
+  
   <meta property="og:url" content="http://localhost:1313/posts/1/">
   <meta property="og:site_name" content="Foraeu Blog">
   <meta property="og:title" content="距离计算的优化方法">
@@ -122,7 +125,7 @@
     "keywords": ["距离计算","python"],
     
     "mainEntityOfPage": "true",
-    "wordCount": "934"
+    "wordCount": "928"
   }]
   </script>
 
@@ -323,13 +326,93 @@
   </div>
   
   
-  <div class="min-h-[148px]"></div>
-<div class="fixed inset-x-0 min-h-[130px] opacity-65 pl-[24px] pr-[24px] bg-gradient-to-b from-neutral from-60% dark:from-neutral-800 to-transparent mix-blend-normal" style="z-index:80"></div>
-<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
-  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
-  <div class="relative max-w-[64rem] ml-auto mr-auto">
-    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
-    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+  
+<script>
+let lastScrollTop = 0;
+let lastScrollDirection = 0;
+let island_header_style_top = 15;
+let accumulated_scroll = 0;
+
+window.addEventListener("scroll", function () {
+    const scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    let currScrollDirection = scroll - lastScrollTop > 0 ? 1 : -1;
+    
+    const island_header = document.getElementById("island-header");
+    const subheader = document.querySelector('.main-menu + .main-menu');
+    
+    
+    const opacity = Math.min(scroll / 300, 0.9);
+    const blur = Math.min(scroll / 100 * 10, 10);
+    
+    
+    island_header.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+    island_header.style.backdropFilter = `blur(${blur}px)`;
+    if(subheader) {
+        subheader.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+        subheader.style.backdropFilter = `blur(${blur}px)`;
+    }
+    
+    
+    if (scroll > 100) {
+        if (currScrollDirection !== lastScrollDirection) {
+            accumulated_scroll = 0;
+        } else {
+            accumulated_scroll += Math.abs(scroll - lastScrollTop);
+        }
+        
+        if (accumulated_scroll > 50 || currScrollDirection == -1) {
+            
+            island_header_style_top = currScrollDirection === 1 ? 
+                Math.max(-100, island_header_style_top - 15) : 
+                Math.min(15, island_header_style_top + 15);    
+                
+            
+            island_header.style.transform = `translateX(-50%) translateY(${island_header_style_top}px)`;
+            if(subheader) {
+                subheader.style.transform = `translateX(-50%) translateY(${island_header_style_top + 50}px)`;
+            }
+        }
+    }
+    
+    lastScrollTop = scroll;
+    lastScrollDirection = currScrollDirection;
+});
+</script>
+
+
+<div id="island-header" style="
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;  /* 移动端下宽度更大 */
+    max-width: 900px;
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.45),
+        rgba(147, 197, 253, 0.35) 20%,
+        rgba(167, 243, 208, 0.4) 50%,
+        rgba(147, 197, 253, 0.35) 80%,
+        rgba(110, 231, 183, 0.4)
+    );
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 0.75rem;  /* 移动端圆角稍小 */
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.03),
+        0 1px 3px rgba(147, 197, 253, 0.2) inset,
+        0 2px 6px rgba(167, 243, 208, 0.15) inset;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 0.25rem;  /* 移动端内边距更小 */
+    @media (min-width: 768px) {  /* 桌面端样式 */
+        width: 70%;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+    }
+    "
+    class="main-menu flex items-center justify-between px-2 py-1 sm:px-6 md:justify-start space-x-3">  
+    
     
     
     
@@ -368,24 +451,57 @@
 
 
             
-            
-  <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
     
-    <p class="text-base font-medium" title="">
-        日志
-    </p>
-</a>
+    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      文章
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
 
 
-
-            
-            
-  <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-    
-    <p class="text-base font-medium" title="">
-        说说
-    </p>
-</a>
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            日志
+          </p>
+        </a>
+        
+        <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            说说
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -430,7 +546,6 @@
 
             </button>
             
-
 
             
             
@@ -533,17 +648,18 @@
                     <li id="menu-close-button">
                         <span
                             class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                            
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
 
   </span>
 
-</span>
+
+                        </span>
                     </li>
 
                     
-
                     
   <li class="mt-1">
     <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -556,39 +672,61 @@
 
 
 
-
                     
-
-                    
+                     
   <li class="mt-1">
-    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-bg font-bg" title="">
+            文章
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
             日志
         </p>
     </a>
 </li>
 
-
-
-
-                    
-
-                    
-  <li class="mt-1">
+<li class="mt-1">
     <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
-        <p class="text-bg font-bg" title="">
+        <p class="text-sm font-small" title="">
             说说
         </p>
     </a>
 </li>
 
+<li class="mb-2"></li>
 
 
 
                     
-
                     
   <li class="mt-1">
     <a href="/tags/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -601,9 +739,7 @@
 
 
 
-
                     
-
                     
   <li class="mt-1">
     <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -616,14 +752,12 @@
 
 
 
-
                     
 
                 </ul>
                 
-                
-
             </div>
+            
         </label>
     </div>
 </div>
@@ -632,14 +766,29 @@
 
 
 
-  </div>
-</div>
+
+<style>
+    main {
+        margin-top: 60px !important;   
+    }
+    .has-submenu main {
+        margin-top: 100px !important;   
+    }
+    @media (min-width: 768px) {
+        main {
+            margin-top: 80px !important;   
+        }
+        .has-submenu main {
+            margin-top: 120px !important;   
+        }
+    }
+</style>
+
+
 <script>
-  window.addEventListener('scroll', function (e) {
-    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    var background_blur = document.getElementById('menu-blur');
-    background_blur.style.opacity = (scroll / 300);
-  });
+    if (document.querySelector('.main-menu + .main-menu')) {
+        document.body.classList.add('has-submenu');
+    }
 </script>
 
   
@@ -648,25 +797,16 @@
       
 
 
-
-<article class="min-w-full py-12 bg-neutral-100 dark:bg-neutral-900 shadow-lg min-h-screen">
+<article>
   
-  <div class="mx-auto max-w-4xl px-4">
+
+  <header id="single_header" class="min-w-full max-w-prose text-center">
     
-    <div class="bg-white dark:bg-neutral-800 shadow-lg overflow-hidden">
+    <h1 class="mt-0 text-4xl font-extrabold text-neutral-900 text-center dark:text-neutral">
+      距离计算的优化方法
+    </h1>
+    <div class="mt-1 mb-6 text-base text-neutral-500 dark:text-neutral-400 print:hidden flex flex-col items-center justify-center">
       
-      
-
-      
-      <div class="px-8 py-10 flex flex-col items-center">
-        
-        <header class="mb-8 text-center w-full">
-          
-          <h1 class="mt-0 mb-4 text-4xl font-extrabold text-neutral-900 dark:text-neutral-100">
-            距离计算的优化方法
-          </h1>
-          <div class="mt-4 text-base text-neutral-500 dark:text-neutral-400 print:hidden flex flex-col items-center space-y-2">
-            
 
 
 
@@ -687,11 +827,7 @@
 
 
 
-  
 
-
-
-  
 
 
 
@@ -708,7 +844,7 @@
 <div class="flex flex-row flex-wrap items-center">
   
   
-  <time datetime="2024-10-30T18:35:47&#43;08:00">2024年10月30日</time><span class="px-2 text-primary-500">&middot;</span><span>934 字</span><span class="px-2 text-primary-500">&middot;</span><span title="预计阅读">2 分钟</span>
+  <time datetime="2024-10-30T18:35:47&#43;08:00">2024年10月30日</time>
   
 
   
@@ -756,21 +892,40 @@
 
 
 
-          </div>
-        </header>
+    </div>
 
+    
+    
+    
+    
+    
+
+    
+
+    
+
+  </header>
+
+<article class="w-full py-12 bg-gray-100 dark:bg-neutral-900 min-h-screen rounded-2xl">
+  
+  <div class="mx-auto max-w-4xl px-4">
+    
+    <div class="bg-neutral-100 dark:bg-neutral-800 shadow-lg overflow-hidden rounded-2xl">
+  <section class="flex flex-col max-w-full mt-0 prose dark:prose-invert lg:flex-row">
+    
+    
+
+      <div class="min-w-0 min-h-0 max-w-fit bg-gray-50">
         
-        <section class="prose dark:prose-invert w-full max-w-none">
+        
+
+
+        <div class="article-content max-w-4xl px-4">
+          <div class="bg-gray-50 dark:bg-neutral-800 dark:border-neutral-700 shadow-lg"></div>
           
 
 <h2 class="relative group">前言 
     <div id="%E5%89%8D%E8%A8%80" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%89%8D%E8%A8%80" aria-label="锚点">#</a>
-    </span>        
     
 </h2>
 <p>在处理包含地理坐标的数据时，常常涉及到计算两个或多个坐标之间的欧式距离。当处理大量的数据点时，计算两两之间的距离会变得非常耗时，因为随着数据点的增加，组合的数量呈二次方增长。在<code>python</code>中，除了常规的<code>for</code>循环，还有哪些方法能够更高效地计算距离呢</p>
@@ -779,23 +934,11 @@
 <h2 class="relative group">坐标距离计算方法 
     <div id="%E5%9D%90%E6%A0%87%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95" class="anchor"></div>
     
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#%E5%9D%90%E6%A0%87%E8%B7%9D%E7%A6%BB%E8%AE%A1%E7%AE%97%E6%96%B9%E6%B3%95" aria-label="锚点">#</a>
-    </span>        
-    
 </h2>
 
 
 <h3 class="relative group">1. NumPy的向量化 
     <div id="1-numpy%E7%9A%84%E5%90%91%E9%87%8F%E5%8C%96" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#1-numpy%E7%9A%84%E5%90%91%E9%87%8F%E5%8C%96" aria-label="锚点">#</a>
-    </span>        
     
 </h3>
 <p><code>NumPy</code>是一个高效的数值计算库，提供了向量化操作的能力，可以避免使用循环。通过将数据组织为数组，我们可以一次性计算多个距离。</p>
@@ -823,12 +966,6 @@
 <h3 class="relative group">2. KD树 
     <div id="2-kd%E6%A0%91" class="anchor"></div>
     
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#2-kd%E6%A0%91" aria-label="锚点">#</a>
-    </span>        
-    
 </h3>
 <p>KD树是一种空间分割的数据结构，可以快速地找到最近邻。对于大规模的点集合，KD树能够大幅度减少计算的复杂度。</p>
 <p><strong>示例代码</strong></p>
@@ -851,12 +988,6 @@
 <h3 class="relative group">3. 数据分块 
     <div id="3-%E6%95%B0%E6%8D%AE%E5%88%86%E5%9D%97" class="anchor"></div>
     
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#3-%E6%95%B0%E6%8D%AE%E5%88%86%E5%9D%97" aria-label="锚点">#</a>
-    </span>        
-    
 </h3>
 <p>当数据集过大时，可以考虑将数据分块处理。通过将数据划分为小块，我们可以在每次计算时只处理一部分数据，从而降低内存使用和提高速度。</p>
 <p><strong>示例代码</strong></p>
@@ -876,12 +1007,6 @@
 
 <h3 class="relative group">4. 使用Cython或Numba 
     <div id="4-%E4%BD%BF%E7%94%A8cython%E6%88%96numba" class="anchor"></div>
-    
-    <span
-        class="absolute top-0 w-6 transition-opacity opacity-0 ltr:-left-6 rtl:-right-6 not-prose group-hover:opacity-100">
-        <a class="group-hover:text-primary-300 dark:group-hover:text-neutral-700"
-            style="text-decoration-line: none !important;" href="#4-%E4%BD%BF%E7%94%A8cython%E6%88%96numba" aria-label="锚点">#</a>
-    </span>        
     
 </h3>
 <p><code>Cython</code>和<code>Numba</code>都是用于加速Python代码的工具。Cython通过将Python代码编译为C代码来加速计算，而Numba则通过即时编译（JIT）优化数值计算。</p>
@@ -904,21 +1029,172 @@
 </span></span></code></pre></div><p><strong>核心思想</strong></p>
 <p>通过使用Cython或Numba，可以将Python的动态特性转化为静态类型，从而极大地提高计算速度，尤其是在进行大量重复计算时。</p>
 
-        </section>
-      </div>
+          
+          
+          
+        </div>
+       
+        
+
+          
+            
+            
+<div class="flex author">
+  
+    
+    
+      
+    
+    
+      
+        
+      
+      <img class="!mt-0 !mb-0 h-24 w-24 rounded-full ltr:mr-4 rtl:ml-4" width="96" height="96"
+      alt="Foraeu" src="/img/girl-160326_1920_hu14518422441497333529.png" />
+    
+  
+  <div class="place-self-center">
+    
+    <div class="text-[0.6rem] uppercase leading-3 text-neutral-500 dark:text-neutral-400">
+      作者
     </div>
+    <div class="font-semibold leading-6 text-neutral-800 dark:text-neutral-300">
+      Foraeu
+    </div>
+    
+    
+    <div class="text-2xl sm:text-lg">
+  <div class="flex flex-wrap text-neutral-400 dark:text-neutral-500">
+    
+      
+        <a
+          class="px-1 hover:text-primary-700 dark:hover:text-primary-400"
+          href="https://github.com/foraeu"
+          target="_blank"
+          aria-label="Github"
+          rel="me noopener noreferrer"
+          ><span class="inline-block align-text-bottom">
+
+  <span class="relative block icon">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 496 512"><path fill="currentColor" d="M165.9 397.4c0 2-2.3 3.6-5.2 3.6-3.3.3-5.6-1.3-5.6-3.6 0-2 2.3-3.6 5.2-3.6 3-.3 5.6 1.3 5.6 3.6zm-31.1-4.5c-.7 2 1.3 4.3 4.3 4.9 2.6 1 5.6 0 6.2-2s-1.3-4.3-4.3-5.2c-2.6-.7-5.5.3-6.2 2.3zm44.2-1.7c-2.9.7-4.9 2.6-4.6 4.9.3 2 2.9 3.3 5.9 2.6 2.9-.7 4.9-2.6 4.6-4.6-.3-1.9-3-3.2-5.9-2.9zM244.8 8C106.1 8 0 113.3 0 252c0 110.9 69.8 205.8 169.5 239.2 12.8 2.3 17.3-5.6 17.3-12.1 0-6.2-.3-40.4-.3-61.4 0 0-70 15-84.7-29.8 0 0-11.4-29.1-27.8-36.6 0 0-22.9-15.7 1.6-15.4 0 0 24.9 2 38.6 25.8 21.9 38.6 58.6 27.5 72.9 20.9 2.3-16 8.8-27.1 16-33.7-55.9-6.2-112.3-14.3-112.3-110.5 0-27.5 7.6-41.3 23.6-58.9-2.6-6.5-11.1-33.3 2.6-67.9 20.9-6.5 69 27 69 27 20-5.6 41.5-8.5 62.8-8.5s42.8 2.9 62.8 8.5c0 0 48.1-33.6 69-27 13.7 34.7 5.2 61.4 2.6 67.9 16 17.7 25.8 31.5 25.8 58.9 0 96.5-58.9 104.2-114.8 110.5 9.2 7.9 17 22.9 17 46.4 0 33.7-.3 75.4-.3 83.6 0 6.5 4.6 14.4 17.3 12.1C428.2 457.8 496 362.9 496 252 496 113.3 383.5 8 244.8 8zM97.2 352.9c-1.3 1-1 3.3.7 5.2 1.6 1.6 3.9 2.3 5.2 1 1.3-1 1-3.3-.7-5.2-1.6-1.6-3.9-2.3-5.2-1zm-10.8-8.1c-.7 1.3.3 2.9 2.3 3.9 1.6 1 3.6.7 4.3-.7.7-1.3-.3-2.9-2.3-3.9-2-.6-3.6-.3-4.3.7zm32.4 35.6c-1.6 1.3-1 4.3 1.3 6.2 2.3 2.3 5.2 2.6 6.5 1 1.3-1.3.7-4.3-1.3-6.2-2.2-2.3-5.2-2.6-6.5-1zm-11.4-14.7c-1.6 1-1.6 3.6 0 5.9 1.6 2.3 4.3 3.3 5.6 2.3 1.6-1.3 1.6-3.9 0-6.2-1.4-2.3-4-3.3-5.6-2z"/></svg>
+
+  </span>
+
+</span></a
+        >
+      
+    
+  </div>
+
+</div>
   </div>
 </div>
 
+          
+
+          
+        
+          
+          <div class="mb-10"></div>
+          
+
+        
+
+        
+        
+
+          
+      </div>
+     
+      
+      
+        
+        
+          
+          
+        
+      <script>
+        var oid = "views_posts\\1\\index.md"
+        var oid_likes = "likes_posts\\1\\index.md"
+      </script>
+      
+      
+      <script type="text/javascript" src="/js/page.min.0860cf4e04fa2d72cc33ddba263083464d48f67de06114529043cb4623319efed4f484fd7f1730df5abea0e2da6f3538855634081d02f2d6e920b956f063e823.js" integrity="sha512-CGDPTgT6LXLMM926JjCDRk1I9n3gYRRSkEPLRiMxnv7U9IT9fxcw31q&#43;oOLabzU4hVY0CB0C8tbpILlW8GPoIw=="></script>
+      
+    </div>
+  </div> 
+    </section>
+  <footer class="pt-8 max-w-prose print:hidden">
+
     
-</article>
-
-<footer class="mt-8 pt-6 border-t border-neutral-200 dark:border-neutral-700">
+  
+    
+    
+    
+    <div class="pt-8">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="flex justify-between pt-3">
+        <span>
+          
+            <a class="flex group mr-3" href="/posts/0/">
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >Hello World</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-10-26T00:00:00&#43;00:00">2024年10月26日</time>
+                  
+                </span>
+              </span>
+            </a>
+          
+        </span>
+        <span>
+          
+            <a class="flex text-right group ml-3" href="/posts/2/">
+              <span class="flex flex-col">
+                <span
+                  class="mt-[0.1rem] leading-6 group-hover:underline group-hover:decoration-primary-500"
+                  >一首小诗</span
+                >
+                <span class="mt-[0.1rem] text-xs text-neutral-500 dark:text-neutral-400">
+                  
+                    <time datetime="2024-11-07T03:07:51&#43;08:00">2024年11月7日</time>
+                  
+                </span>
+              </span>
+              <span
+                class="ml-3 text-neutral-700 group-hover:text-primary-600 ltr:inline rtl:hidden dark:text-neutral dark:group-hover:text-primary-400"
+                >&rarr;</span
+              >
+              <span
+                class="mr-3 text-neutral-700 group-hover:text-primary-600 ltr:hidden rtl:inline dark:text-neutral dark:group-hover:text-primary-400"
+                >&larr;</span
+              >
+            </a>
+          
+        </span>
+      </div>
+    </div>
   
 
-  
-    <div class="mt-6">
-      <head>
+
+    
+    
+    <div class="pt-3">
+      <hr class="border-dotted border-neutral-300 dark:border-neutral-600" />
+      <div class="pt-3">
+        <head>
   <link rel="stylesheet" href="https://unpkg.com/@waline/client@v2/dist/waline.css" />
 </head>
 
@@ -1041,10 +1317,12 @@
     </style>
 </body>
 
+      </div>
     </div>
-  
-</footer>
-</div>
+    
+    
+  </footer>
+</article>
 
       <div id="top-scroller" class="pointer-events-none absolute top-[110vh] bottom-0 w-12 ltr:right-0 rtl:left-0">
   <a href="#the-top"

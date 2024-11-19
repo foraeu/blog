@@ -36,8 +36,8 @@
   
   
   
-  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.304a2b8d06b1f1f31b2b2ce8d5c81a663905cdc2aafe1060a32ad8dbadbd87ade8c168386c1085c01f908dddb5eae3f03b806830158002f18a15e84ebc924b80.css"
-    integrity="sha512-MEorjQax8fMbKyzo1cgaZjkFzcKq/hBgoyrY2629h63owWg4bBCFwB&#43;Qjd216uPwO4BoMBWAAvGKFehOvJJLgA==" />
+  <link type="text/css" rel="stylesheet" href="/css/main.bundle.min.b3baee66020d60db79deb7dc7b41f351adf16dce994793a0477d14adddf90aad9d9a6ac000ab7e07ab91d96db70ba61ba83d55d4dc07f168399dfbdaad9457b5.css"
+    integrity="sha512-s7ruZgINYNt53rfce0HzUa3xbc6ZR5OgR30Urd35Cq2dmmrAAKt&#43;B6uR2W23C6YbqD1V1NwH8Wg5nfvarZRXtQ==" />
   
   
   <script type="text/javascript" src="/js/appearance.min.516a16745bea5a9bd011138d254cc0fd3973cd55ce6e15f3dec763e7c7c2c7448f8fe7b54cca811cb821b0c7e12cd161caace1dd794ac3d34d40937cbcc9ee12.js"
@@ -80,6 +80,9 @@
   
   
   
+  
+  
+  <meta name="baidu-site-verification" content="codeva-ashLcc4Hzj" />
   
   
   <meta property="og:url" content="http://localhost:1313/404.html">
@@ -291,13 +294,93 @@
   </div>
   
   
-  <div class="min-h-[148px]"></div>
-<div class="fixed inset-x-0 min-h-[130px] opacity-65 pl-[24px] pr-[24px] bg-gradient-to-b from-neutral from-60% dark:from-neutral-800 to-transparent mix-blend-normal" style="z-index:80"></div>
-<div class="fixed inset-x-0 pl-[24px] pr-[24px]" style="z-index:100">
-  <div id="menu-blur" class="absolute opacity-0 inset-x-0 top-0 h-full single_hero_background nozoom backdrop-blur-2xl shadow-2xl"></div>
-  <div class="relative max-w-[64rem] ml-auto mr-auto">
-    <div style="padding-left:0;padding-right:0;padding-top:2px;padding-bottom:3px"
-    class="main-menu flex items-center justify-between px-4 py-6 sm:px-6 md:justify-start space-x-3">
+  
+<script>
+let lastScrollTop = 0;
+let lastScrollDirection = 0;
+let island_header_style_top = 15;
+let accumulated_scroll = 0;
+
+window.addEventListener("scroll", function () {
+    const scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
+    let currScrollDirection = scroll - lastScrollTop > 0 ? 1 : -1;
+    
+    const island_header = document.getElementById("island-header");
+    const subheader = document.querySelector('.main-menu + .main-menu');
+    
+    
+    const opacity = Math.min(scroll / 300, 0.9);
+    const blur = Math.min(scroll / 100 * 10, 10);
+    
+    
+    island_header.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+    island_header.style.backdropFilter = `blur(${blur}px)`;
+    if(subheader) {
+        subheader.style.backgroundColor = `rgba(255, 255, 255, ${opacity})`;
+        subheader.style.backdropFilter = `blur(${blur}px)`;
+    }
+    
+    
+    if (scroll > 100) {
+        if (currScrollDirection !== lastScrollDirection) {
+            accumulated_scroll = 0;
+        } else {
+            accumulated_scroll += Math.abs(scroll - lastScrollTop);
+        }
+        
+        if (accumulated_scroll > 50 || currScrollDirection == -1) {
+            
+            island_header_style_top = currScrollDirection === 1 ? 
+                Math.max(-100, island_header_style_top - 15) : 
+                Math.min(15, island_header_style_top + 15);    
+                
+            
+            island_header.style.transform = `translateX(-50%) translateY(${island_header_style_top}px)`;
+            if(subheader) {
+                subheader.style.transform = `translateX(-50%) translateY(${island_header_style_top + 50}px)`;
+            }
+        }
+    }
+    
+    lastScrollTop = scroll;
+    lastScrollDirection = currScrollDirection;
+});
+</script>
+
+
+<div id="island-header" style="
+    position: fixed;
+    top: 15px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 90%;  /* 移动端下宽度更大 */
+    max-width: 900px;
+    background: linear-gradient(
+        135deg, 
+        rgba(255, 255, 255, 0.45),
+        rgba(147, 197, 253, 0.35) 20%,
+        rgba(167, 243, 208, 0.4) 50%,
+        rgba(147, 197, 253, 0.35) 80%,
+        rgba(110, 231, 183, 0.4)
+    );
+    backdrop-filter: blur(8px);
+    border: 1px solid rgba(255, 255, 255, 0.45);
+    border-radius: 0.75rem;  /* 移动端圆角稍小 */
+    box-shadow: 
+        0 4px 6px rgba(0, 0, 0, 0.03),
+        0 1px 3px rgba(147, 197, 253, 0.2) inset,
+        0 2px 6px rgba(167, 243, 208, 0.15) inset;
+    transition: all 0.3s ease;
+    z-index: 1000;
+    padding: 0.25rem;  /* 移动端内边距更小 */
+    @media (min-width: 768px) {  /* 桌面端样式 */
+        width: 70%;
+        padding: 0.25rem 0.5rem;
+        border-radius: 1rem;
+    }
+    "
+    class="main-menu flex items-center justify-between px-2 py-1 sm:px-6 md:justify-start space-x-3">  
+    
     
     
     
@@ -336,24 +419,57 @@
 
 
             
-            
-  <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+             
+  <div>
+  <div class="cursor-pointer flex items-center nested-menu">
     
-    <p class="text-base font-medium" title="">
-        日志
-    </p>
-</a>
+    <a  class="text-base font-medium text-gray-500 hover:text-primary-600 dark:hover:text-primary-400" title="">
+      文章
+    </a>
+    <span>
+      
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
 
 
-
-            
-            
-  <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
-    
-    <p class="text-base font-medium" title="">
-        说说
-    </p>
-</a>
+    </span>
+  </div>
+  <div class="absolute menuhide">
+    <div class="pt-2 p-5 mt-2 rounded-xl backdrop-blur shadow-2xl">
+      <div class="flex flex-col space-y-3">
+        
+        <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            日志
+          </p>
+        </a>
+        
+        <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+          
+          <p class="text-sm font-sm" title="">
+            说说
+          </p>
+        </a>
+        
+      </div>
+    </div>
+  </div>
+</div>
 
 
 
@@ -398,7 +514,6 @@
 
             </button>
             
-
 
             
             
@@ -501,17 +616,18 @@
                     <li id="menu-close-button">
                         <span
                             class="cursor-pointer inline-block align-text-bottom hover:text-primary-600 dark:hover:text-primary-400">
+                            
 
   <span class="relative block icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 512"><path fill="currentColor" d="M310.6 361.4c12.5 12.5 12.5 32.75 0 45.25C304.4 412.9 296.2 416 288 416s-16.38-3.125-22.62-9.375L160 301.3L54.63 406.6C48.38 412.9 40.19 416 32 416S15.63 412.9 9.375 406.6c-12.5-12.5-12.5-32.75 0-45.25l105.4-105.4L9.375 150.6c-12.5-12.5-12.5-32.75 0-45.25s32.75-12.5 45.25 0L160 210.8l105.4-105.4c12.5-12.5 32.75-12.5 45.25 0s12.5 32.75 0 45.25l-105.4 105.4L310.6 361.4z"/></svg>
 
   </span>
 
-</span>
+
+                        </span>
                     </li>
 
                     
-
                     
   <li class="mt-1">
     <a href="/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -524,39 +640,61 @@
 
 
 
-
                     
-
-                    
+                     
   <li class="mt-1">
-    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+    <a class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
         <p class="text-bg font-bg" title="">
+            文章
+        </p>
+        <span>
+            
+
+  <span class="relative block icon">
+    <svg
+  xmlns="http://www.w3.org/2000/svg"
+  viewBox="0 0 20 20"
+  fill="currentColor"
+  aria-hidden="true"
+>
+  <path
+    fill-rule="evenodd"
+    d="M5.23 7.21a.75.75 0 011.06.02L10 11.168l3.71-3.938a.75.75 0 111.08 1.04l-4.25 4.5a.75.75 0 01-1.08 0l-4.25-4.5a.75.75 0 01.02-1.06z"
+    clip-rule="evenodd"
+  />
+</svg>
+
+  </span>
+
+
+        </span>
+    </a>
+</li>
+
+<li class="mt-1">
+    <a href="/posts/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
+        
+        <p class="text-sm font-small" title="">
             日志
         </p>
     </a>
 </li>
 
-
-
-
-                    
-
-                    
-  <li class="mt-1">
+<li class="mt-1">
     <a href="/shuoshuo/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
         
-        <p class="text-bg font-bg" title="">
+        <p class="text-sm font-small" title="">
             说说
         </p>
     </a>
 </li>
 
+<li class="mb-2"></li>
 
 
 
                     
-
                     
   <li class="mt-1">
     <a href="/tags/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -569,9 +707,7 @@
 
 
 
-
                     
-
                     
   <li class="mt-1">
     <a href="/about/"  class="flex items-center text-gray-500 hover:text-primary-600 dark:hover:text-primary-400">
@@ -584,14 +720,12 @@
 
 
 
-
                     
 
                 </ul>
                 
-                
-
             </div>
+            
         </label>
     </div>
 </div>
@@ -600,14 +734,29 @@
 
 
 
-  </div>
-</div>
+
+<style>
+    main {
+        margin-top: 60px !important;   
+    }
+    .has-submenu main {
+        margin-top: 100px !important;   
+    }
+    @media (min-width: 768px) {
+        main {
+            margin-top: 80px !important;   
+        }
+        .has-submenu main {
+            margin-top: 120px !important;   
+        }
+    }
+</style>
+
+
 <script>
-  window.addEventListener('scroll', function (e) {
-    var scroll = window.pageYOffset || document.documentElement.scrollTop || document.body.scrollTop || 0;
-    var background_blur = document.getElementById('menu-blur');
-    background_blur.style.opacity = (scroll / 300);
-  });
+    if (document.querySelector('.main-menu + .main-menu')) {
+        document.body.classList.add('has-submenu');
+    }
 </script>
 
   

@@ -74,6 +74,11 @@
     <priority>0.5</priority>
   </url>
   <url>
+    <loc>http://localhost:1313/baidu_verify_codeva-ashlcc4hzj/</loc>
+    <changefreq>daily</changefreq>
+    <priority>0.5</priority>
+  </url>
+  <url>
     <loc>http://localhost:1313/shuoshuo/</loc>
     <changefreq>daily</changefreq>
     <priority>0.5</priority>
