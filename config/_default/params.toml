@@ -32,7 +32,7 @@ giteaDefaultServer = "https://git.fsfe.org"
 forgejoDefaultServer = "https://v8.next.forgejo.org"
 
 [header]
-  layout = "fixed-gradient" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
+  layout = "island" # valid options: basic, fixed, fixed-fill, fixed-gradient, fixed-fill-blur
 
 [footer]
   showMenu = true
@@ -70,17 +70,17 @@ forgejoDefaultServer = "https://v8.next.forgejo.org"
   editURL = "https://github.com/foraeu/foraeu.github.io/"
   editAppendPath = false
   seriesOpened = false
-  showHeadingAnchors = true
-  showPagination = false
+  showHeadingAnchors = false
+  showPagination = true
   invertPagination = false
-  showReadingTime = true
+  showReadingTime = false
   showComments = true
   showTableOfContents = false
   # showRelatedContent = false
   # relatedContentLimit = 3
   showTaxonomies = true
   showAuthorsBadges = false
-  showWordCount = true
+  showWordCount = false
   # sharingLinks = [ "linkedin", "twitter", "bluesky", "mastodon", "reddit", "pinterest", "facebook", "email", "whatsapp", "telegram"]
   showZenMode = false
 

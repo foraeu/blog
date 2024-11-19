@@ -20,12 +20,14 @@
   name = "日志"
   pageRef = "posts"
   weight = 10
+  parent = "文章"
 #  pre = "edit"
 
 [[main]]
   name = "说说"
   pageRef = "shuoshuo"
   weight = 12
+  parent = "文章"
 #  pre = "wand-magic-sparkles"
 
 [[main]]
@@ -34,10 +36,9 @@
   weight = 15
 #  pre = "eye"
 
-#[[main]]
-#  name = "链接"
-#  weight = 20
-#  pre ="link"
+[[main]]
+  name = "文章"
+  weight = 8
 
 [[main]]
   name = "标签"
