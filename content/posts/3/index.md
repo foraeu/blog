@@ -12,6 +12,7 @@ tags: ["矩阵合并","python","numpy"]
 
 创建一个列数为2n的空矩阵`matrix_end`，在循环中，先依次对原矩阵每一行生成m-1行，2n列的矩阵，每行分别为[li,l1],[li,l2],……,[li,lm]，然后将该矩阵与`matrix_end`合并。实现如下：
 
+{{< expand id="example31" title="点击展开代码块" open=false >}}
 ```python
 import numpy as np
 import time
@@ -36,12 +37,15 @@ for idx in range(init_matrix.shape[0]):
 end = time.time()
 print("Time:", end - start)
 ```
+{{< /expand >}}
+
 最终的运行时间为7.4s
 
 **方法二**
 
 创建一个空列表，在循环中，先得到m-1行，2n列的矩阵，将结果存储到列表中，之后在循环外一次性将所有行合并成一个矩阵。实现如下：
 
+{{< expand id="example32" title="点击展开代码块" open=false >}}
 ```python
 import numpy as np
 import time
@@ -68,6 +72,8 @@ matrix = np.vstack(matrix_list)
 end = time.time()
 print("Time:", end - start)
 ```
+{{< /expand >}}
+
 最终的运行时间为0.05s
 
 为何性能相差如此之大？

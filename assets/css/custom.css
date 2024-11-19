@@ -29,6 +29,109 @@
     text-underline-offset: 4.5px; /* 增加底線與文字的距離*/
 }
 
+.expand-wrapper {
+    border: 1px solid #ddd;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    margin-bottom: 1rem;
+    background-color: #fff;
+    /* 預設背景顏色 */
+    width: 100%;
+    transition: max-width 0.3s ease-in-out;
+}
+
+body.zen-mode-enable .zen-mode-content {
+  max-width: 100% !important;
+}
+
+.expand-toggle {
+    display: none;
+}
+
+.expand-title {
+    display: flex;
+    align-items: center;
+    padding: 0.75rem 1rem;
+    /* 調整上下邊距 */
+    background-color: #f7f7f7;
+    /* 預設背景顏色 */
+    color: #333;
+    /* 預設文字顏色 */
+    cursor: pointer;
+    transition: background-color 0.3s ease, color 0.3s ease;
+    font-weight: normal;
+    /* 取消粗體樣式 */
+}
+
+.expand-title:hover {
+    background-color: #e0e0e0;
+}
+
+.expand-title .expand-icon {
+    margin-right: 0.5rem;
+    /* 調整圖標與文字之間的距離 */
+}
+
+.expand-content {
+    max-height: none;
+    overflow: hidden;
+    transition: max-height 0.5s cubic-bezier(0, 1, 0, 1);
+    background-color: #fff;
+    padding: 0 1.8rem;
+}
+
+.expand-toggle:not(:checked) ~ .expand-content {
+    display: none;
+}
+
+.expand-toggle:checked~.expand-content {
+    max-height: 500px; /* 设置展开后的最大高度 */
+    overflow-y: auto; /* 添加垂直滚动条 */
+    transition: max-height 0.8s ease-in-out;
+}
+
+.expand-inner {
+    max-height: none;
+    overflow: visible;
+    margin: -0.5rem 0;
+    /* 使用負邊距縮短內容區域與邊框的距離 */
+    padding: 1rem 0;
+    /* 可根據需要調整 */
+    color: #333;
+    /* 預設文字顏色 */
+}
+
+/* 暗色模式樣式 */
+.dark .expand-wrapper {
+    border-color: #444;
+    /* 暗色模式下的邊框顏色 */
+    background-color: #222;
+    /* 暗色模式下的背景顏色 */
+}
+
+.dark .expand-title {
+    background-color: #333;
+    /* 暗色模式下的標題背景顏色 */
+    color: #e0e0e0;
+    /* 暗色模式下的標題文字顏色 */
+}
+
+.dark .expand-title:hover {
+    background-color: #444;
+    /* 暗色模式下的標題懸停背景顏色 */
+}
+
+.dark .expand-content {
+    background-color: #2c2c2c;
+    /* 暗色模式下的內容背景顏色 */
+}
+
+.dark .expand-inner {
+    color: #e0e0e0;
+    /* 暗色模式下的內容文字顏色 */
+}
+
 html {
     font-size: 16pt;
 }
