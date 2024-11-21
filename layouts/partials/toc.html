@@ -1,14 +1,12 @@
 <div class="article-toc lg:block hidden fixed top-20" style="right: max(1rem, calc((100% - 1500px) / 2));">
-  <div class="w-[320px] bg-white dark:bg-neutral-800 rounded-xl shadow-lg">
-    <!-- 目录标题 -->
-    <div class="px-4 py-3 bg-neutral-50 dark:bg-neutral-700">
-      <h3 class="text-lg font-semibold text-neutral-800 dark:text-neutral-100">
-        {{ i18n "article.table_of_contents" | default "Table of Contents" }}
-      </h3>
-    </div>
-    
-    <!-- 目录内容 -->
-    <div id="toc-wrapper" class="p-4 max-h-[70vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
+  <!-- 目录标题 - 更改文字和颜色 -->
+  <h3 class="text-lg font-semibold text-neutral-500 dark:text-neutral-400 mb-3 px-4">
+    TABLE OF CONTENTS
+  </h3>
+  
+  <div class="w-[320px] bg-neutral-50 dark:bg-neutral-800 rounded-xl shadow-lg">
+    <!-- 目录内容 - 添加!important来确保样式优先级 -->
+    <div id="toc-wrapper" class="p-4 !max-h-[50vh] overflow-y-auto scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100 dark:scrollbar-thumb-gray-600 dark:scrollbar-track-gray-800">
       <div id="toc-content">
         {{ .TableOfContents | emojify }}
       </div>
@@ -18,12 +16,12 @@
 
 <!-- 移动端目录 -->
 <details class="toc-mobile lg:hidden mt-4 mb-8">
-  <summary class="px-4 py-2 bg-neutral-50 dark:bg-neutral-700 rounded-lg cursor-pointer">
-    <span class="text-lg font-semibold text-neutral-800 dark:text-neutral-100">
-      {{ i18n "article.table_of_contents" | default "Table of Contents" }}
+  <summary class="px-4 py-2 bg-neutral-100 dark:bg-neutral-700 rounded-lg cursor-pointer">
+    <span class="text-lg font-semibold text-neutral-500 dark:text-neutral-400">
+      TABLE OF CONTENTS
     </span>
   </summary>
-  <div class="px-4 py-3 mt-2 bg-white dark:bg-neutral-800 rounded-lg shadow">
+  <div class="px-4 py-3 mt-2 bg-neutral-100 dark:bg-neutral-800 rounded-lg shadow">
     {{ .TableOfContents | emojify }}
   </div>
 </details>
@@ -75,8 +73,11 @@
   border-bottom: 2px solid #93C5FD;
 }
 
+/* 覆盖原有的toc-wrapper宽度设置，并添加高度限制 */
 #toc-wrapper {
-  width: 280px; /* 减小固定宽度 */
+  width: 280px;
+  max-height: 50vh !important;
+  overflow-y: auto !important;
 }
 
 #TableOfContents a:hover {
