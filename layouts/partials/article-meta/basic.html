@@ -80,7 +80,7 @@
 {{ end }}
 
 {{/* Output taxonomies */}}
-{{ if .Params.showTaxonomies | default (.Site.Params.article.showTaxonomies | default false) }}
+{{ if and (eq $scope "single") (not .Params.externalURL) (.Params.showTaxonomies | default (.Site.Params.article.showTaxonomies | default false)) }}
 <div class="flex flex-row flex-wrap items-center">
   {{ range $taxonomy, $terms := .Site.Taxonomies }}
   {{ if and (not (eq $taxonomy "authors")) (not (eq $taxonomy "series"))}}
